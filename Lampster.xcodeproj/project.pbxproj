@@ -1,0 +1,482 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3A02CB981975BF25006F405C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A02CB971975BF25006F405C /* Cocoa.framework */; };
+		3A02CBA21975BF25006F405C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3A02CBA01975BF25006F405C /* InfoPlist.strings */; };
+		3A02CBA41975BF25006F405C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A02CBA31975BF25006F405C /* main.m */; };
+		3A02CBA81975BF25006F405C /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 3A02CBA61975BF25006F405C /* Credits.rtf */; };
+		3A02CBAB1975BF25006F405C /* RHSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A02CBAA1975BF25006F405C /* RHSAppDelegate.m */; };
+		3A02CBAE1975BF25006F405C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A02CBAC1975BF25006F405C /* MainMenu.xib */; };
+		3A02CBB01975BF25006F405C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A02CBAF1975BF25006F405C /* Images.xcassets */; };
+		3A02CBB71975BF25006F405C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A02CBB61975BF25006F405C /* XCTest.framework */; };
+		3A02CBB81975BF25006F405C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A02CB971975BF25006F405C /* Cocoa.framework */; };
+		3A02CBC01975BF25006F405C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3A02CBBE1975BF25006F405C /* InfoPlist.strings */; };
+		3A02CBC21975BF25006F405C /* LampsterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A02CBC11975BF25006F405C /* LampsterTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3A02CBB91975BF25006F405C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3A02CB8C1975BF24006F405C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3A02CB931975BF24006F405C;
+			remoteInfo = Lampster;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3A02CB941975BF25006F405C /* Lampster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lampster.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A02CB971975BF25006F405C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		3A02CB9A1975BF25006F405C /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		3A02CB9B1975BF25006F405C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		3A02CB9C1975BF25006F405C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3A02CB9F1975BF25006F405C /* Lampster-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Lampster-Info.plist"; sourceTree = "<group>"; };
+		3A02CBA11975BF25006F405C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3A02CBA31975BF25006F405C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3A02CBA51975BF25006F405C /* Lampster-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Lampster-Prefix.pch"; sourceTree = "<group>"; };
+		3A02CBA71975BF25006F405C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		3A02CBA91975BF25006F405C /* RHSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RHSAppDelegate.h; sourceTree = "<group>"; };
+		3A02CBAA1975BF25006F405C /* RHSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RHSAppDelegate.m; sourceTree = "<group>"; };
+		3A02CBAD1975BF25006F405C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		3A02CBAF1975BF25006F405C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		3A02CBB51975BF25006F405C /* LampsterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LampsterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A02CBB61975BF25006F405C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		3A02CBBD1975BF25006F405C /* LampsterTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LampsterTests-Info.plist"; sourceTree = "<group>"; };
+		3A02CBBF1975BF25006F405C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3A02CBC11975BF25006F405C /* LampsterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LampsterTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3A02CB911975BF24006F405C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A02CB981975BF25006F405C /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3A02CBB21975BF25006F405C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A02CBB81975BF25006F405C /* Cocoa.framework in Frameworks */,
+				3A02CBB71975BF25006F405C /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3A02CB8B1975BF24006F405C = {
+			isa = PBXGroup;
+			children = (
+				3A02CB9D1975BF25006F405C /* Lampster */,
+				3A02CBBB1975BF25006F405C /* LampsterTests */,
+				3A02CB961975BF25006F405C /* Frameworks */,
+				3A02CB951975BF25006F405C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3A02CB951975BF25006F405C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3A02CB941975BF25006F405C /* Lampster.app */,
+				3A02CBB51975BF25006F405C /* LampsterTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3A02CB961975BF25006F405C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3A02CB971975BF25006F405C /* Cocoa.framework */,
+				3A02CBB61975BF25006F405C /* XCTest.framework */,
+				3A02CB991975BF25006F405C /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3A02CB991975BF25006F405C /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3A02CB9A1975BF25006F405C /* AppKit.framework */,
+				3A02CB9B1975BF25006F405C /* CoreData.framework */,
+				3A02CB9C1975BF25006F405C /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		3A02CB9D1975BF25006F405C /* Lampster */ = {
+			isa = PBXGroup;
+			children = (
+				3A02CBA91975BF25006F405C /* RHSAppDelegate.h */,
+				3A02CBAA1975BF25006F405C /* RHSAppDelegate.m */,
+				3A02CBAC1975BF25006F405C /* MainMenu.xib */,
+				3A02CBAF1975BF25006F405C /* Images.xcassets */,
+				3A02CB9E1975BF25006F405C /* Supporting Files */,
+			);
+			path = Lampster;
+			sourceTree = "<group>";
+		};
+		3A02CB9E1975BF25006F405C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3A02CB9F1975BF25006F405C /* Lampster-Info.plist */,
+				3A02CBA01975BF25006F405C /* InfoPlist.strings */,
+				3A02CBA31975BF25006F405C /* main.m */,
+				3A02CBA51975BF25006F405C /* Lampster-Prefix.pch */,
+				3A02CBA61975BF25006F405C /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3A02CBBB1975BF25006F405C /* LampsterTests */ = {
+			isa = PBXGroup;
+			children = (
+				3A02CBC11975BF25006F405C /* LampsterTests.m */,
+				3A02CBBC1975BF25006F405C /* Supporting Files */,
+			);
+			path = LampsterTests;
+			sourceTree = "<group>";
+		};
+		3A02CBBC1975BF25006F405C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3A02CBBD1975BF25006F405C /* LampsterTests-Info.plist */,
+				3A02CBBE1975BF25006F405C /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3A02CB931975BF24006F405C /* Lampster */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3A02CBC51975BF25006F405C /* Build configuration list for PBXNativeTarget "Lampster" */;
+			buildPhases = (
+				3A02CB901975BF24006F405C /* Sources */,
+				3A02CB911975BF24006F405C /* Frameworks */,
+				3A02CB921975BF24006F405C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Lampster;
+			productName = Lampster;
+			productReference = 3A02CB941975BF25006F405C /* Lampster.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3A02CBB41975BF25006F405C /* LampsterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3A02CBC81975BF25006F405C /* Build configuration list for PBXNativeTarget "LampsterTests" */;
+			buildPhases = (
+				3A02CBB11975BF25006F405C /* Sources */,
+				3A02CBB21975BF25006F405C /* Frameworks */,
+				3A02CBB31975BF25006F405C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3A02CBBA1975BF25006F405C /* PBXTargetDependency */,
+			);
+			name = LampsterTests;
+			productName = LampsterTests;
+			productReference = 3A02CBB51975BF25006F405C /* LampsterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3A02CB8C1975BF24006F405C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = RHS;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Rasmus Sten";
+				TargetAttributes = {
+					3A02CBB41975BF25006F405C = {
+						TestTargetID = 3A02CB931975BF24006F405C;
+					};
+				};
+			};
+			buildConfigurationList = 3A02CB8F1975BF24006F405C /* Build configuration list for PBXProject "Lampster" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3A02CB8B1975BF24006F405C;
+			productRefGroup = 3A02CB951975BF25006F405C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3A02CB931975BF24006F405C /* Lampster */,
+				3A02CBB41975BF25006F405C /* LampsterTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3A02CB921975BF24006F405C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A02CBA21975BF25006F405C /* InfoPlist.strings in Resources */,
+				3A02CBB01975BF25006F405C /* Images.xcassets in Resources */,
+				3A02CBA81975BF25006F405C /* Credits.rtf in Resources */,
+				3A02CBAE1975BF25006F405C /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3A02CBB31975BF25006F405C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A02CBC01975BF25006F405C /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3A02CB901975BF24006F405C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A02CBAB1975BF25006F405C /* RHSAppDelegate.m in Sources */,
+				3A02CBA41975BF25006F405C /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3A02CBB11975BF25006F405C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A02CBC21975BF25006F405C /* LampsterTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3A02CBBA1975BF25006F405C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3A02CB931975BF24006F405C /* Lampster */;
+			targetProxy = 3A02CBB91975BF25006F405C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3A02CBA01975BF25006F405C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3A02CBA11975BF25006F405C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3A02CBA61975BF25006F405C /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3A02CBA71975BF25006F405C /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		3A02CBAC1975BF25006F405C /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3A02CBAD1975BF25006F405C /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		3A02CBBE1975BF25006F405C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3A02CBBF1975BF25006F405C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3A02CBC31975BF25006F405C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		3A02CBC41975BF25006F405C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		3A02CBC61975BF25006F405C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Lampster/Lampster-Prefix.pch";
+				INFOPLIST_FILE = "Lampster/Lampster-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		3A02CBC71975BF25006F405C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Lampster/Lampster-Prefix.pch";
+				INFOPLIST_FILE = "Lampster/Lampster-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		3A02CBC91975BF25006F405C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Lampster.app/Contents/MacOS/Lampster";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Lampster/Lampster-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "LampsterTests/LampsterTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		3A02CBCA1975BF25006F405C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Lampster.app/Contents/MacOS/Lampster";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Lampster/Lampster-Prefix.pch";
+				INFOPLIST_FILE = "LampsterTests/LampsterTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3A02CB8F1975BF24006F405C /* Build configuration list for PBXProject "Lampster" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3A02CBC31975BF25006F405C /* Debug */,
+				3A02CBC41975BF25006F405C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3A02CBC51975BF25006F405C /* Build configuration list for PBXNativeTarget "Lampster" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3A02CBC61975BF25006F405C /* Debug */,
+				3A02CBC71975BF25006F405C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3A02CBC81975BF25006F405C /* Build configuration list for PBXNativeTarget "LampsterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3A02CBC91975BF25006F405C /* Debug */,
+				3A02CBCA1975BF25006F405C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3A02CB8C1975BF24006F405C /* Project object */;
+}
