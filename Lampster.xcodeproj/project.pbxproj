@@ -18,6 +18,9 @@
 		3A02CBB81975BF25006F405C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A02CB971975BF25006F405C /* Cocoa.framework */; };
 		3A02CBC01975BF25006F405C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3A02CBBE1975BF25006F405C /* InfoPlist.strings */; };
 		3A02CBC21975BF25006F405C /* LampsterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A02CBC11975BF25006F405C /* LampsterTests.m */; };
+		3A02CBCD1975BFCB006F405C /* RHSLIFXClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A02CBCC1975BFCB006F405C /* RHSLIFXClient.m */; };
+		3A02CBCF1975C35E006F405C /* lifxclient.rb in Resources */ = {isa = PBXBuildFile; fileRef = 3A02CBCE1975C35E006F405C /* lifxclient.rb */; };
+		3A02CBD21975CC5C006F405C /* DDFileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A02CBD11975CC5C006F405C /* DDFileReader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +53,11 @@
 		3A02CBBD1975BF25006F405C /* LampsterTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LampsterTests-Info.plist"; sourceTree = "<group>"; };
 		3A02CBBF1975BF25006F405C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3A02CBC11975BF25006F405C /* LampsterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LampsterTests.m; sourceTree = "<group>"; };
+		3A02CBCB1975BFCB006F405C /* RHSLIFXClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RHSLIFXClient.h; sourceTree = "<group>"; };
+		3A02CBCC1975BFCB006F405C /* RHSLIFXClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RHSLIFXClient.m; sourceTree = "<group>"; };
+		3A02CBCE1975C35E006F405C /* lifxclient.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = lifxclient.rb; sourceTree = "<group>"; };
+		3A02CBD01975CC5C006F405C /* DDFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDFileReader.h; sourceTree = "<group>"; };
+		3A02CBD11975CC5C006F405C /* DDFileReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDFileReader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +126,11 @@
 				3A02CBA91975BF25006F405C /* RHSAppDelegate.h */,
 				3A02CBAA1975BF25006F405C /* RHSAppDelegate.m */,
 				3A02CBAC1975BF25006F405C /* MainMenu.xib */,
+				3A02CBCB1975BFCB006F405C /* RHSLIFXClient.h */,
+				3A02CBCC1975BFCB006F405C /* RHSLIFXClient.m */,
+				3A02CBD01975CC5C006F405C /* DDFileReader.h */,
+				3A02CBD11975CC5C006F405C /* DDFileReader.m */,
+				3A02CBCE1975C35E006F405C /* lifxclient.rb */,
 				3A02CBAF1975BF25006F405C /* Images.xcassets */,
 				3A02CB9E1975BF25006F405C /* Supporting Files */,
 			);
@@ -235,6 +248,7 @@
 				3A02CBB01975BF25006F405C /* Images.xcassets in Resources */,
 				3A02CBA81975BF25006F405C /* Credits.rtf in Resources */,
 				3A02CBAE1975BF25006F405C /* MainMenu.xib in Resources */,
+				3A02CBCF1975C35E006F405C /* lifxclient.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +267,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A02CBD21975CC5C006F405C /* DDFileReader.m in Sources */,
+				3A02CBCD1975BFCB006F405C /* RHSLIFXClient.m in Sources */,
 				3A02CBAB1975BF25006F405C /* RHSAppDelegate.m in Sources */,
 				3A02CBA41975BF25006F405C /* main.m in Sources */,
 			);
