@@ -14,3 +14,6 @@ if the network connection is down or unreliable.
 The LIFX client parts are synchronous in that all LIFX commands are issued on a
 serial queue and there can only be one outstanding request at the time, but the
 API is asynchronous and block based.
+
+To build, you need to "git submodule init && git submodule update" and change
+the code signing build settings.
