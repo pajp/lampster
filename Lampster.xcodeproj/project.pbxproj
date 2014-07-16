@@ -177,6 +177,7 @@
 				3A02CB901975BF24006F405C /* Sources */,
 				3A02CB911975BF24006F405C /* Frameworks */,
 				3A02CB921975BF24006F405C /* Resources */,
+				3A02CBD319766047006F405C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -261,6 +262,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3A02CBD319766047006F405C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/bin/sh -xe";
+			shellScript = "export OUR_GEM_HOME=\"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/gems\"\nmkdir -p ${OUR_GEM_HOME}\nif ! [ -d \"${OUR_GEM_HOME}/gems/lifx\"* ] ; then\n    GEM_HOME=\"${OUR_GEM_HOME}\" gem install lifx\nelse\n    echo \"LIFX gem already installed\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3A02CB901975BF24006F405C /* Sources */ = {

@@ -13,10 +13,8 @@
 -(id) init {
     if (self) {
         rubyclient = [[NSTask alloc] init];
-        rubyclient.launchPath = @"/usr/bin/ruby";
-        rubyclient.arguments = @[
-            [[NSBundle bundleForClass:self.class] pathForResource:@"lifxclient" ofType:@"rb"]
-            ];
+        rubyclient.launchPath = [[NSBundle bundleForClass:self.class] pathForResource:@"lifxclient" ofType:@"rb"];
+        [rubyclient setEnvironment:@{@"GEM_HOME" : [[NSBundle bundleForClass:self.class] pathForResource:@"gems" ofType:@""]}];
         rubyclient.standardInput = clientinput = [NSPipe pipe];
         NSPipe* stdout = [NSPipe pipe];
         rubyclient.standardOutput = stdout;
