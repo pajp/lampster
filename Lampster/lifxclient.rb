@@ -33,6 +33,8 @@ last_bulb_count = 0
         puts ": #{JSON.generate({:bulb_count => c.lights.count})}"
     end
     last_bulb_count = c.lights.count
+    # stop looking if no new bulb has announced itself during the last
+    # three seconds
     Time.new.to_i - last_t > 3
 }
 scan_time = Time.new.to_i - start_t
