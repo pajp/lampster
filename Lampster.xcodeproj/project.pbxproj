@@ -216,6 +216,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Rasmus Sten";
 				TargetAttributes = {
+					3A02CB931975BF24006F405C = {
+						DevelopmentTeam = 7BJ49E34RD;
+					};
 					3A02CBB41975BF25006F405C = {
 						TestTargetID = 3A02CB931975BF24006F405C;
 					};
@@ -419,6 +422,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Lampster/Lampster-Prefix.pch";
@@ -432,6 +436,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Lampster/Lampster-Prefix.pch";

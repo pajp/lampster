@@ -43,8 +43,8 @@
 
 - (id) initWithHandle:(NSFileHandle *)aHandle {
     if (self = [super init]) {
-        fileHandle = aHandle;
-        if (fileHandle == nil) {
+        self.fileHandle = aHandle;
+        if (self.fileHandle == nil) {
             return nil;
         }
         
@@ -55,7 +55,8 @@
 }
 
 - (void) dealloc {
-    [fileHandle closeFile];
+    [self.fileHandle closeFile];
+    //self.fileHandle = nil;
 }
 
 - (NSString *) readLine {
@@ -64,9 +65,18 @@
     NSMutableData * currentData = [[NSMutableData alloc] init];
     BOOL shouldReadMore = YES;
 
-    @autoreleasepool {
-        while (shouldReadMore) {
-            NSData * chunk = [fileHandle readDataOfLength:chunkSize];
+    while (shouldReadMore) {
+        @autoreleasepool {
+            NSData * chunk = nil;
+            @try {
+                chunk = [self.fileHandle readDataOfLength:chunkSize];
+            } @catch (NSException* e) {
+                NSLog(@"Read exception: %@", e);
+                return nil;
+            }
+            if (chunk == nil) {
+                return nil;
+            }
             NSRange newLineRange = [chunk rangeOfData_dd:newLineData];
             if (newLineRange.location != NSNotFound) {
                 

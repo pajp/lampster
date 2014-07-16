@@ -16,4 +16,5 @@
 @property (assign) IBOutlet NSWindow *window;
 @property (retain) RHSLIFXClient* lifxClient;
 @property (weak) IBOutlet NSProgressIndicator *spinner;
+@property (weak) IBOutlet NSLevelIndicator *levelIndicator;
 @end

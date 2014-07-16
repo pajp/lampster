@@ -13,31 +13,62 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     self.lifxClient = [RHSLIFXClient new];
-    [self spinUntilOK];
+    __weak RHSAppDelegate* _self = self;
+    self.lifxClient.dataHandler = ^void(NSDictionary* data) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (data[@"bulb_count"]) {
+                _self.levelIndicator.maxValue = [(NSNumber*) data[@"bulb_count"] intValue];
+                [_self.levelIndicator setDoubleValue:_self.levelIndicator.maxValue];
+            }
+            if (data[@"toggle_count"]) {
+                [_self.levelIndicator setDoubleValue:[(NSNumber*) data[@"toggle_count"] doubleValue]];
+            }
+        });
+    };
+    [self startSpin];
+    void (^restartingCompletionHandler)(NSError*) = ^void(NSError* error) {
+        if (!error) {
+            [self stopSpin];
+            dispatch_async(dispatch_get_main_queue(), ^{
+            });
+        } else {
+            NSLog(@"Error waiting for LIFX readiness: %@", error);
+            [self.lifxClient waitForReady:restartingCompletionHandler];
+        }
+        
+    };
+    [self.lifxClient waitForReady:restartingCompletionHandler];
 }
 
-- (void)spinUntilOK {
+- (void)startSpin {
     [self.spinner startAnimation:nil];
     [self.onButton setEnabled:NO];
     [self.offButton setEnabled:NO];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [self.lifxClient waitForOK];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.onButton setEnabled:YES];
-            [self.offButton setEnabled:YES];
-            [self.spinner stopAnimation:nil];
-        });
-    });
+}
+
+- (void)stopSpin {
+    dispatch_async(dispatch_get_main_queue()
+                   , ^{
+                       [self.onButton setEnabled:YES];
+                       [self.offButton setEnabled:YES];
+                       [self.spinner stopAnimation:nil];
+                   });
 }
 
 - (IBAction)lightsOn:(id)sender {
-    [self.lifxClient lightsOn];
-    [self spinUntilOK];
+    [self startSpin];
+    [self.levelIndicator setDoubleValue:0.0];
+    [self.lifxClient lightsOn:^(NSError *error) {
+        [self stopSpin];
+    }];
 }
 
 - (IBAction)lightsOff:(id)sender {
-    [self.lifxClient lightsOff];
-    [self spinUntilOK];
+    [self startSpin];
+    [self.levelIndicator setDoubleValue:0.0];
+    [self.lifxClient lightsOff:^(NSError *error) {
+        [self stopSpin];
+    }];
 }
 
 @end

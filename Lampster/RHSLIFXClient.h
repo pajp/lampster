@@ -13,9 +13,16 @@
 {
     NSTask* rubyclient;
     NSPipe* clientinput;
+    NSString* lastCommand;
+    NSString* lastExpect;
+    void (^lastCompletionHandler)(NSError*);
     DDFileReader* reader;
+    dispatch_queue_t lifxqueue;
 }
--(void) lightsOn;
--(void) lightsOff;
--(void) waitForOK;
+@property (retain) NSDictionary* lastData;
+@property (nonatomic, copy) void (^errorHandler)(NSError*);
+@property (nonatomic, copy) void (^dataHandler)(NSDictionary*);
+-(void) lightsOn:(void (^)(NSError*)) completionHandler;
+-(void) lightsOff:(void (^)(NSError*)) completionHandler;
+-(void) waitForReady:(void (^)(NSError*)) completionHandler;
 @end

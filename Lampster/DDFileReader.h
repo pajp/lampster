@@ -1,18 +1,20 @@
 //DDFileReader.h
 
+#import <Foundation/NSFileHandle.h>
+
 @interface DDFileReader : NSObject {
     
-    NSFileHandle * fileHandle;
     
     NSString * lineDelimiter;
     NSUInteger chunkSize;
 }
-
+@property (retain) NSFileHandle* fileHandle;
 @property (nonatomic, copy) NSString * lineDelimiter;
 @property (nonatomic) NSUInteger chunkSize;
 
 - (id) initWithHandle:(NSFileHandle *)aHandle;
 
+- (void) setFileHandle:(NSFileHandle*) handle;
 - (NSString *) readLine;
 - (NSString *) readTrimmedLine;
 
