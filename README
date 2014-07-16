@@ -10,3 +10,7 @@ It is the result of a couple of evenings of hacking to try embedding a Ruby
 helper program and communicating with it using stdio and as such is has a bunch
 of bugs - most notably it lacks a lot of error handling and may hang or crash
 if the network connection is down or unreliable. 
+
+The LIFX client parts are synchronous in that all LIFX commands are issued on a
+serial queue and there can only be one outstanding request at the time, but the
+API is asynchronous and block based.
