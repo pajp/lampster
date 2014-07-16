@@ -72,6 +72,7 @@
 		3A02CBDA1976F988006F405C /* DDHotKeyUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDHotKeyUtilities.h; path = DDHotKey/DDHotKeyUtilities.h; sourceTree = SOURCE_ROOT; };
 		3A02CBDB1976F988006F405C /* DDHotKeyUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDHotKeyUtilities.m; path = DDHotKey/DDHotKeyUtilities.m; sourceTree = SOURCE_ROOT; };
 		3A02CBE01976F997006F405C /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		3A02CBE21977002E006F405C /* Lampster.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Lampster.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +140,7 @@
 		3A02CB9D1975BF25006F405C /* Lampster */ = {
 			isa = PBXGroup;
 			children = (
+				3A02CBE21977002E006F405C /* Lampster.entitlements */,
 				3A02CBA91975BF25006F405C /* RHSAppDelegate.h */,
 				3A02CBAA1975BF25006F405C /* RHSAppDelegate.m */,
 				3A02CBAC1975BF25006F405C /* MainMenu.xib */,
@@ -242,6 +244,11 @@
 				TargetAttributes = {
 					3A02CB931975BF24006F405C = {
 						DevelopmentTeam = 7BJ49E34RD;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 					3A02CBB41975BF25006F405C = {
 						TestTargetID = 3A02CB931975BF24006F405C;
@@ -450,7 +457,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_ENTITLEMENTS = Lampster/Lampster.entitlements;
+				CODE_SIGN_IDENTITY = "Developer ID Application: Rasmus Sten";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Lampster/Lampster-Prefix.pch";
@@ -464,7 +472,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_ENTITLEMENTS = Lampster/Lampster.entitlements;
+				CODE_SIGN_IDENTITY = "Developer ID Application: Rasmus Sten";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Lampster/Lampster-Prefix.pch";
