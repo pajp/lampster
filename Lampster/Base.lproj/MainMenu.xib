@@ -81,6 +81,7 @@
                         <buttonCell key="cell" type="push" title="On" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ARW-6d-s3r">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent">1</string>
                         </buttonCell>
                         <connections>
                             <action selector="lightsOn:" target="Voe-Tx-rLC" id="5yD-up-GcV"/>
@@ -92,6 +93,7 @@
                         <buttonCell key="cell" type="push" title="Off" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="r4z-kD-rfQ">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent">0</string>
                         </buttonCell>
                         <connections>
                             <action selector="lightsOff:" target="Voe-Tx-rLC" id="s47-1n-Ev8"/>
