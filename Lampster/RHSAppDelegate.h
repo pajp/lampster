@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "RHSLIFXClient.h"
-
+#import "DDHotKeyCenter.h"
 @interface RHSAppDelegate : NSObject <NSApplicationDelegate>
 @property (weak) IBOutlet NSButton *onButton;
 @property (weak) IBOutlet NSButton *offButton;

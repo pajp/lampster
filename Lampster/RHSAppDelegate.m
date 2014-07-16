@@ -12,6 +12,11 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    DDHotKeyCenter* hkc = [DDHotKeyCenter sharedHotKeyCenter];
+    [hkc registerHotKey:[DDHotKey hotKeyWithKeyCode:37 modifierFlags:NSShiftKeyMask|NSCommandKeyMask task:^(NSEvent *event) {
+        NSLog(@"Got hot key event! %@", event);
+        [NSApp activateIgnoringOtherApps:YES];
+    }]];
     self.lifxClient = [RHSLIFXClient new];
     __weak RHSAppDelegate* _self = self;
     self.lifxClient.dataHandler = ^void(NSDictionary* data) {
