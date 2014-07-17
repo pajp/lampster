@@ -25,5 +25,5 @@
 -(void) lightsOn:(void (^)(NSError*)) completionHandler;
 -(void) lightsOff:(void (^)(NSError*)) completionHandler;
 -(void) waitForReady:(void (^)(NSError*)) completionHandler;
--(BOOL) send:(NSString*) command andExpect:(NSString*) reply;
+-(void) selectBulbs:(NSArray*) bulbs;
 @end

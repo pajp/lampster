@@ -21,14 +21,13 @@
 
 - (void)tableView:(NSTableView *)aTableView setObjectValue:(id)anObject forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex {
     self.lamps[rowIndex][aTableColumn.identifier] = anObject;
-    NSMutableString* idListString = [NSMutableString stringWithString:@"select-bulbs"];
+    NSMutableArray* selectedBulbIds = [NSMutableArray new];
     [self.lamps enumerateObjectsUsingBlock:^(NSDictionary* lamp, NSUInteger idx, BOOL *stop) {
         if (((NSNumber*)lamp[@"enabled"]).boolValue) {
-            [idListString appendString:@" "];
-            [idListString appendString:lamp[@"id"]];
+            [selectedBulbIds addObject:lamp[@"id"]];
         }
     }];
-    [self.lifxClient send:idListString andExpect:@"OK"];
+    [self.lifxClient selectBulbs:selectedBulbIds];
 }
 
 - (IBAction)toggleBulbWindow:(id)sender {

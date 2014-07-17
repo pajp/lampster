@@ -148,6 +148,13 @@
     [self send:@"lights-off" andExpect:@"OK" completionHandler:completionHandler];
 }
 
+-(void) selectBulbs:(NSArray*) bulbs {
+    dispatch_async(lifxqueue, ^{
+        NSString* command = [NSString stringWithFormat:@"select-bulbs %@", [bulbs componentsJoinedByString:@" "]];
+        [self send:command andExpect:@"OK"];
+    });
+}
+
 -(void) dealloc {
     [self send:@"exit"];
 }
