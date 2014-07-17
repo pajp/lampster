@@ -6,18 +6,27 @@ STDOUT.sync = true
 
 puts "Hello."
 @client = LIFX::Client.lan
-
+@selected_bulbs = []
 def toggle_all(state)
     on = state
     toggle_count = 0
     @client.lights.lights.each { |light|
-        if on
-            light.turn_on!
-        else
-            light.turn_off!
+        puts "Light: #{light.id}"
+        bulb_is_selected = false
+        @selected_bulbs.each { |id|
+            if light.id == id
+                bulb_is_selected = true
+            end
+        }
+        if bulb_is_selected
+            if on
+                light.turn_on!
+                else
+                light.turn_off!
+            end
+            toggle_count += 1
+            puts ": #{JSON.generate({:toggle_count => toggle_count})}"
         end
-        toggle_count += 1
-        puts ": #{JSON.generate({:toggle_count => toggle_count})}"
     }
     puts "OK"
 end
@@ -43,7 +52,12 @@ if @client.lights.count == 0
     exit 1
 else
     puts "#{@client.lights.count} bulbs found (searched for #{scan_time} seconds)."
-    data = {:bulb_count => @client.lights.count, :scan_time => scan_time}
+    lightdata = {}
+    @client.lights.lights.each { | light|
+        lightdata[light.id] = { :id => light.id, :label => light.label }
+        @selected_bulbs.push light.id
+    }
+    data = {:bulb_count => @client.lights.count, :scan_time => scan_time, :lights => lightdata }
     puts ": #{JSON.generate(data)}"
 end
 puts "Ready."
@@ -52,6 +66,11 @@ puts "Ready."
 
 ARGF.each do |line|
     puts "ACK #{line}"
+    if /^select-bulbs *(?<bulbids>[0-9a-f ]*)$/ =~ line
+        puts "Bulb IDs selected: \"#{bulbids}\""
+        @selected_bulbs = bulbids.split " "
+        puts "OK"
+    end
     if line =~ /^lights-on$/
         toggle_all(true)
     end

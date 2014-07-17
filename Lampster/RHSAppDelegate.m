@@ -10,6 +10,31 @@
 
 @implementation RHSAppDelegate
 
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView {
+    if (!self.lamps) return 0;
+    return self.lamps.count;
+}
+
+- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex {
+    return self.lamps[rowIndex][aTableColumn.identifier];
+}
+
+- (void)tableView:(NSTableView *)aTableView setObjectValue:(id)anObject forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex {
+    self.lamps[rowIndex][aTableColumn.identifier] = anObject;
+    NSMutableString* idListString = [NSMutableString stringWithString:@"select-bulbs"];
+    [self.lamps enumerateObjectsUsingBlock:^(NSDictionary* lamp, NSUInteger idx, BOOL *stop) {
+        if (((NSNumber*)lamp[@"enabled"]).boolValue) {
+            [idListString appendString:@" "];
+            [idListString appendString:lamp[@"id"]];
+        }
+    }];
+    [self.lifxClient send:idListString andExpect:@"OK"];
+}
+
+- (IBAction)toggleBulbWindow:(id)sender {
+    [self.bulbWindow setIsVisible:!self.bulbWindow.isVisible];
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     DDHotKeyCenter* hkc = [DDHotKeyCenter sharedHotKeyCenter];
@@ -17,6 +42,7 @@
         NSLog(@"Got hot key event! %@", event);
         [NSApp activateIgnoringOtherApps:YES];
     }]];
+    self.table.dataSource = self;
     self.lifxClient = [RHSLIFXClient new];
     __weak RHSAppDelegate* _self = self;
     self.lifxClient.dataHandler = ^void(NSDictionary* data) {
@@ -25,6 +51,17 @@
                 _self.levelIndicator.maxValue = [(NSNumber*) data[@"bulb_count"] intValue];
                 [_self.levelIndicator setDoubleValue:_self.levelIndicator.maxValue];
             }
+            if (data[@"lights"]) {
+                NSMutableDictionary* lamps = data[@"lights"];
+                NSMutableArray* lampArray = [NSMutableArray new];
+                [lamps.allKeys enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                    NSMutableDictionary* lamp = [NSMutableDictionary dictionaryWithDictionary:lamps[obj]];
+                    lamp[@"enabled"] = @( 1 );
+                    [lampArray addObject:lamp];
+                }];
+                 _self.lamps = lampArray;
+            }
+            [_self.table reloadData];
             if (data[@"toggle_count"]) {
                 [_self.levelIndicator setDoubleValue:[(NSNumber*) data[@"toggle_count"] doubleValue]];
             }

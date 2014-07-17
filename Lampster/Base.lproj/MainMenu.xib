@@ -13,10 +13,14 @@
         <customObject id="-3" userLabel="Application"/>
         <customObject id="Voe-Tx-rLC" customClass="RHSAppDelegate">
             <connections>
+                <outlet property="bulbWindow" destination="TwU-7Q-sOA" id="JEy-aV-Lmm"/>
+                <outlet property="bulbWindpw" destination="TwU-7Q-sOA" id="xWH-wa-LAX"/>
                 <outlet property="levelIndicator" destination="aIh-rr-EM0" id="o6Z-ct-8oS"/>
                 <outlet property="offButton" destination="2Di-OE-yFO" id="hQN-wt-2Kt"/>
                 <outlet property="onButton" destination="MeR-CO-tw5" id="h7i-Ar-kpa"/>
                 <outlet property="spinner" destination="blr-Bg-2Gg" id="cEd-Tm-v68"/>
+                <outlet property="table" destination="n14-Qq-FQJ" id="WjM-tD-A95"/>
+                <outlet property="toggleBulbWindow" destination="Q40-xh-Abt" id="1Ul-Dh-86A"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -60,6 +64,19 @@
                             <menuItem title="Quit Lampster" keyEquivalent="q" id="4sb-4s-VLi">
                                 <connections>
                                     <action selector="terminate:" target="-1" id="Te7-pn-YzF"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="Window" id="5TP-MV-nYc">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Window" id="djf-jC-kdQ">
+                        <items>
+                            <menuItem title="Toggle bulb window" keyEquivalent="b" id="Q40-xh-Abt">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="toggleBulbWindow:" target="Voe-Tx-rLC" id="oeV-nq-Md3"/>
                                 </connections>
                             </menuItem>
                         </items>
@@ -109,6 +126,81 @@
                         <levelIndicatorCell key="cell" alignment="left" maxValue="1" id="J7m-wt-2dp"/>
                     </levelIndicator>
                 </subviews>
+            </view>
+        </window>
+        <window title="Select bulbs to operate on" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="TwU-7Q-sOA" customClass="NSPanel">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" HUD="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="113" y="157" width="197" height="124"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
+            <view key="contentView" id="YO8-gE-N4L">
+                <rect key="frame" x="0.0" y="0.0" width="197" height="124"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KBq-1q-IZu">
+                        <rect key="frame" x="0.0" y="0.0" width="197" height="124"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <clipView key="contentView" id="2ch-L7-wAo">
+                            <rect key="frame" x="1" y="17" width="195" height="106"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="36R-3X-q2x" id="n14-Qq-FQJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="195" height="106"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <size key="intercellSpacing" width="3" height="2"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                    <tableColumns>
+                                        <tableColumn identifier="enabled" width="40" minWidth="40" maxWidth="1000" id="Dls-Xq-Aa1">
+                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
+                                            </tableHeaderCell>
+                                            <buttonCell key="dataCell" type="check" bezelStyle="regularSquare" imagePosition="left" inset="2" id="P9t-Ql-LK4">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                        </tableColumn>
+                                        <tableColumn identifier="label" width="149" minWidth="40" maxWidth="1000" id="yhs-Ih-3mu">
+                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
+                                            </tableHeaderCell>
+                                            <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="jEF-hK-Ggg">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                            <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                        </tableColumn>
+                                    </tableColumns>
+                                </tableView>
+                            </subviews>
+                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </clipView>
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="esT-9J-Tfz">
+                            <rect key="frame" x="1" y="1" width="0.0" height="16"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="37" horizontal="NO" id="lmK-yy-Oa2">
+                            <rect key="frame" x="-15" y="17" width="16" height="0.0"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                        <tableHeaderView key="headerView" id="36R-3X-q2x">
+                            <rect key="frame" x="0.0" y="0.0" width="195" height="17"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </tableHeaderView>
+                    </scrollView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="KBq-1q-IZu" firstAttribute="top" secondItem="YO8-gE-N4L" secondAttribute="top" id="0TC-YS-Eep"/>
+                    <constraint firstItem="KBq-1q-IZu" firstAttribute="leading" secondItem="YO8-gE-N4L" secondAttribute="leading" id="C8p-tX-jjt"/>
+                    <constraint firstAttribute="bottom" secondItem="KBq-1q-IZu" secondAttribute="bottom" id="MZs-yo-oHW"/>
+                    <constraint firstAttribute="trailing" secondItem="KBq-1q-IZu" secondAttribute="trailing" id="gRP-K8-llt"/>
+                </constraints>
             </view>
         </window>
     </objects>

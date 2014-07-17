@@ -131,6 +131,7 @@
 }
 
 -(BOOL) send:(NSString*) command andExpect:(NSString*) reply {
+    NSLog(@"-> sending \"%@\"", command);
     [clientinput.fileHandleForWriting writeData:[[NSString stringWithFormat:@"%@\n", command] dataUsingEncoding:NSUTF8StringEncoding]];
     return [self waitFor:reply];
 }
