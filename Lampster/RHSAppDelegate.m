@@ -10,6 +10,10 @@
 
 @implementation RHSAppDelegate
 
+- (BOOL)tableView:(NSTableView *)aTableView shouldEditTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex {
+    return ![aTableColumn.identifier isEqualToString:@"label"];
+}
+
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView {
     if (!self.lamps) return 0;
     return self.lamps.count;
@@ -42,6 +46,7 @@
         [NSApp activateIgnoringOtherApps:YES];
     }]];
     self.table.dataSource = self;
+    self.table.delegate = self;
     self.lifxClient = [RHSLIFXClient new];
     __weak RHSAppDelegate* _self = self;
     self.lifxClient.dataHandler = ^void(NSDictionary* data) {
