@@ -51,6 +51,7 @@
         NSLog(@"Got hot key event! %@", event);
         [NSApp activateIgnoringOtherApps:YES];
     }]];
+    BOOL firstRun = ![[NSUserDefaults standardUserDefaults] boolForKey:@"run-once"];
     self.firstBulbDiscovered = NO;
     self.table.dataSource = self;
     self.table.delegate = self;
@@ -76,7 +77,10 @@
                     [lampArray addObject:lamp];
                 }];
                  _self.lamps = lampArray;
-                if (!_self.bulbWindow.isVisible) [_self toggleBulbWindow:nil];
+                if (firstRun) {
+                    if (!_self.bulbWindow.isVisible) [_self toggleBulbWindow:nil];
+                    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"run-once"];
+                }
             }
             [_self.table reloadData];
             if (data[@"toggle_count"]) {
