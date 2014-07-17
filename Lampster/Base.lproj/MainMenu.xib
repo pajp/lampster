@@ -135,7 +135,7 @@
         <window title="Select bulbs to turn on or off" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="TwU-7Q-sOA" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" HUD="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="113" y="157" width="238" height="140"/>
+            <rect key="contentRect" x="939" y="439" width="238" height="140"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <view key="contentView" id="YO8-gE-N4L">
                 <rect key="frame" x="0.0" y="0.0" width="238" height="140"/>

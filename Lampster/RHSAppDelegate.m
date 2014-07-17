@@ -39,12 +39,7 @@
 - (IBAction)toggleBulbWindow:(id)sender {
     [self.bulbWindow setIsVisible:!self.bulbWindow.isVisible];
     if ([self.bulbWindow isVisible]) {
-        NSDictionary *f = @{NSViewAnimationTargetKey : self.bulbWindow,
-                            NSViewAnimationEffectKey : NSViewAnimationFadeInEffect};
-        NSViewAnimation *a = [[NSViewAnimation alloc] initWithViewAnimations:@[f]];
-        a.duration = 1.0;
-        a.animationBlockingMode = NSAnimationNonblocking;
-        [a startAnimation];
+        [self fadeInWindow:self.bulbWindow];
     } else {
         [self.bulbWindow setAlphaValue:0.0];
     }
@@ -105,7 +100,23 @@
     [self.bulbWindow setOpaque:NO];
     [self.bulbWindow setAlphaValue:0.0];
 
+    /* For some reason drop shadow disappears when I try to fade in the main
+       window, so I'll leave it out for now */
+//    [self.window setOpaque:NO];
+//    [self.window setAlphaValue:0.0];
+//    [self fadeInWindow:self.window];
+//    [self.window setIsVisible:YES];
+
     [self.lifxClient waitForReady:restartingCompletionHandler];
+}
+
+- (void)fadeInWindow:(NSWindow*) window {
+    NSDictionary *f = @{NSViewAnimationTargetKey : window,
+                        NSViewAnimationEffectKey : NSViewAnimationFadeInEffect};
+    NSViewAnimation *a = [[NSViewAnimation alloc] initWithViewAnimations:@[f]];
+    a.duration = 1.0;
+    a.animationBlockingMode = NSAnimationNonblocking;
+    [a startAnimation];
 }
 
 - (void)fadeIn {
