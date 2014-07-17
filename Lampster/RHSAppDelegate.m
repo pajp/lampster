@@ -6,7 +6,9 @@
 //  Copyright (c) 2014 Rasmus Sten. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "RHSAppDelegate.h"
+#import "DDHotKeyCenter.h"
 
 @implementation RHSAppDelegate
 
@@ -36,6 +38,16 @@
 
 - (IBAction)toggleBulbWindow:(id)sender {
     [self.bulbWindow setIsVisible:!self.bulbWindow.isVisible];
+    if ([self.bulbWindow isVisible]) {
+        NSDictionary *f = @{NSViewAnimationTargetKey : self.bulbWindow,
+                            NSViewAnimationEffectKey : NSViewAnimationFadeInEffect};
+        NSViewAnimation *a = [[NSViewAnimation alloc] initWithViewAnimations:@[f]];
+        a.duration = 1.0;
+        a.animationBlockingMode = NSAnimationNonblocking;
+        [a startAnimation];
+    } else {
+        [self.bulbWindow setAlphaValue:0.0];
+    }
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -45,6 +57,7 @@
         NSLog(@"Got hot key event! %@", event);
         [NSApp activateIgnoringOtherApps:YES];
     }]];
+    self.firstBulbDiscovered = NO;
     self.table.dataSource = self;
     self.table.delegate = self;
     self.lifxClient = [RHSLIFXClient new];
@@ -52,6 +65,11 @@
     self.lifxClient.dataHandler = ^void(NSDictionary* data) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (data[@"bulb_count"]) {
+                double bulb_count = ((NSNumber*) data[@"bulb_count"]).intValue;
+                if (!_self.firstBulbDiscovered && bulb_count > 0) {
+                    _self.firstBulbDiscovered = YES;
+                    [_self fadeIn];
+                }
                 _self.levelIndicator.maxValue = [(NSNumber*) data[@"bulb_count"] intValue];
                 [_self.levelIndicator setDoubleValue:_self.levelIndicator.maxValue];
             }
@@ -83,7 +101,23 @@
         }
         
     };
+
+    [self.bulbWindow setOpaque:NO];
+    [self.bulbWindow setAlphaValue:0.0];
+
     [self.lifxClient waitForReady:restartingCompletionHandler];
+}
+
+- (void)fadeIn {
+    CABasicAnimation* a = [CABasicAnimation animation];
+    a.keyPath = @"opacity";
+    a.fromValue = [NSNumber numberWithFloat:0];
+    a.toValue = [NSNumber numberWithFloat:1];
+    a.duration = 3.0;
+    [@[self.levelIndicator.layer, self.onButton.layer, self.offButton.layer] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [obj addAnimation:a forKey:nil];
+        [obj setOpacity:1.0];
+    }];
 }
 
 - (void)startSpin {

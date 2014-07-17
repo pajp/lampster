@@ -88,11 +88,11 @@
             <windowStyleMask key="styleMask" titled="YES"/>
             <rect key="contentRect" x="843" y="437" width="87" height="134"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
-            <view key="contentView" id="EiT-Mj-1SZ">
+            <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="87" height="134"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MeR-CO-tw5">
+                    <button wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" alphaValue="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="MeR-CO-tw5">
                         <rect key="frame" x="14" y="86" width="59" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="On" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ARW-6d-s3r">
@@ -104,7 +104,7 @@
                             <action selector="lightsOn:" target="Voe-Tx-rLC" id="5yD-up-GcV"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Di-OE-yFO">
+                    <button wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" alphaValue="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="2Di-OE-yFO">
                         <rect key="frame" x="14" y="53" width="60" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Off" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="r4z-kD-rfQ">
@@ -120,9 +120,13 @@
                         <rect key="frame" x="35" y="40" width="16" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </progressIndicator>
-                    <levelIndicator appearanceType="lightContent" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aIh-rr-EM0">
+                    <levelIndicator wantsLayer="YES" appearanceType="lightContent" verticalHuggingPriority="750" fixedFrame="YES" alphaValue="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="aIh-rr-EM0">
                         <rect key="frame" x="20" y="18" width="47" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <shadow key="shadow" blurRadius="3">
+                            <size key="offset" width="3" height="-3"/>
+                            <color key="color" white="0.0" alpha="0.46000000000000002" colorSpace="calibratedWhite"/>
+                        </shadow>
                         <levelIndicatorCell key="cell" alignment="left" maxValue="1" id="J7m-wt-2dp"/>
                     </levelIndicator>
                 </subviews>
