@@ -27,7 +27,6 @@
     NSPipe* stderr = [NSPipe pipe];
     rubyclient.standardOutput = stdout;
     rubyclient.standardError = stderr;
-    reader = [[DDFileReader alloc] initWithHandle:stdout.fileHandleForReading];
     [rubyclient launch];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         NSData* stderrData = [[stderr fileHandleForReading] readDataToEndOfFile];
@@ -42,7 +41,6 @@
 
 -(id) initWithErrorHandler:(void (^)(NSError*)) errorHandler {
     if (self) {
-        reader = nil;
         lastCommand = nil;
         lastExpect = nil;
         lastCompletionHandler = nil;
@@ -98,9 +96,32 @@
     }
 }
 
+- (void) readClientLinesUsingBlock:(void(^)(NSString*, BOOL*))block {
+    int fd = ((NSPipe*) rubyclient.standardOutput).fileHandleForReading.fileDescriptor;
+    uint8_t byte;
+    size_t readcount = 0;
+    BOOL stop = NO;
+    NSMutableData* buffer = [NSMutableData data];
+    while (!stop && (readcount = read(fd, &byte, 1)) != -1) {
+        if (readcount != 1) {
+            NSLog(@"Error: read %zu bytes instead of 1", readcount);
+            exit(1);
+        }
+        [buffer appendBytes:&byte length:1];
+        if (byte == '\n') {
+            NSString* row = [[NSString alloc] initWithData:buffer encoding:NSUTF8StringEncoding];
+            buffer = [NSMutableData data];
+            block(row, &stop);
+        }
+    }
+    if (readcount == -1) {
+        NSLog(@"read() error: errno=%d", errno);
+    }
+}
+
 -(BOOL) waitFor:(NSString*) escape {
     __block BOOL found = NO;
-    [reader enumerateLinesUsingBlock:^(NSString *str, BOOL *stop) {
+    [self readClientLinesUsingBlock:^(NSString *str, BOOL *stop) {
         NSString* line = [str stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
         if ([line hasPrefix:@": "]) {
             [self scanData:[line substringFromIndex:2]];

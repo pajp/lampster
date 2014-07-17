@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DDFileReader.h"
 
 @interface RHSLIFXClient : NSObject
 {
@@ -16,7 +15,6 @@
     NSString* lastCommand;
     NSString* lastExpect;
     void (^lastCompletionHandler)(NSError*);
-    DDFileReader* reader;
     dispatch_queue_t lifxqueue;
 }
 @property (retain) NSDictionary* lastData;

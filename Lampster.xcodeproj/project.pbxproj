@@ -20,7 +20,6 @@
 		3A02CBC21975BF25006F405C /* LampsterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A02CBC11975BF25006F405C /* LampsterTests.m */; };
 		3A02CBCD1975BFCB006F405C /* RHSLIFXClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A02CBCC1975BFCB006F405C /* RHSLIFXClient.m */; };
 		3A02CBCF1975C35E006F405C /* lifxclient.rb in Resources */ = {isa = PBXBuildFile; fileRef = 3A02CBCE1975C35E006F405C /* lifxclient.rb */; };
-		3A02CBD21975CC5C006F405C /* DDFileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A02CBD11975CC5C006F405C /* DDFileReader.m */; };
 		3A02CBDC1976F988006F405C /* DDHotKeyAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A02CBD51976F988006F405C /* DDHotKeyAppDelegate.m */; };
 		3A02CBDD1976F988006F405C /* DDHotKeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A02CBD71976F988006F405C /* DDHotKeyCenter.m */; };
 		3A02CBDE1976F988006F405C /* DDHotKeyTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A02CBD91976F988006F405C /* DDHotKeyTextField.m */; };
@@ -62,8 +61,6 @@
 		3A02CBCB1975BFCB006F405C /* RHSLIFXClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RHSLIFXClient.h; sourceTree = "<group>"; };
 		3A02CBCC1975BFCB006F405C /* RHSLIFXClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RHSLIFXClient.m; sourceTree = "<group>"; };
 		3A02CBCE1975C35E006F405C /* lifxclient.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = lifxclient.rb; sourceTree = "<group>"; };
-		3A02CBD01975CC5C006F405C /* DDFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDFileReader.h; sourceTree = "<group>"; };
-		3A02CBD11975CC5C006F405C /* DDFileReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDFileReader.m; sourceTree = "<group>"; };
 		3A02CBD41976F988006F405C /* DDHotKeyAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDHotKeyAppDelegate.h; path = DDHotKey/DDHotKeyAppDelegate.h; sourceTree = SOURCE_ROOT; };
 		3A02CBD51976F988006F405C /* DDHotKeyAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDHotKeyAppDelegate.m; path = DDHotKey/DDHotKeyAppDelegate.m; sourceTree = SOURCE_ROOT; };
 		3A02CBD61976F988006F405C /* DDHotKeyCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDHotKeyCenter.h; path = DDHotKey/DDHotKeyCenter.h; sourceTree = SOURCE_ROOT; };
@@ -152,8 +149,6 @@
 				3A02CBAC1975BF25006F405C /* MainMenu.xib */,
 				3A02CBCB1975BFCB006F405C /* RHSLIFXClient.h */,
 				3A02CBCC1975BFCB006F405C /* RHSLIFXClient.m */,
-				3A02CBD01975CC5C006F405C /* DDFileReader.h */,
-				3A02CBD11975CC5C006F405C /* DDFileReader.m */,
 				3A02CBCE1975C35E006F405C /* lifxclient.rb */,
 				3A02CBAF1975BF25006F405C /* Images.xcassets */,
 				3A02CBD41976F988006F405C /* DDHotKeyAppDelegate.h */,
@@ -324,7 +319,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A02CBD21975CC5C006F405C /* DDFileReader.m in Sources */,
 				3A02CBCD1975BFCB006F405C /* RHSLIFXClient.m in Sources */,
 				3A02CBDC1976F988006F405C /* DDHotKeyAppDelegate.m in Sources */,
 				3A02CBDE1976F988006F405C /* DDHotKeyTextField.m in Sources */,
