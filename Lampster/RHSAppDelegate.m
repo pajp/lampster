@@ -37,11 +37,10 @@
 }
 
 - (IBAction)toggleBulbWindow:(id)sender {
+    [self.bulbWindow setAlphaValue:0.0];
     [self.bulbWindow setIsVisible:!self.bulbWindow.isVisible];
     if ([self.bulbWindow isVisible]) {
         [self fadeInWindow:self.bulbWindow];
-    } else {
-        [self.bulbWindow setAlphaValue:0.0];
     }
 }
 
