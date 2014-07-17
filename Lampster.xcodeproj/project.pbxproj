@@ -75,6 +75,7 @@
 		3A02CBE01976F997006F405C /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		3A02CBE21977002E006F405C /* Lampster.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Lampster.entitlements; sourceTree = "<group>"; };
 		3A02CBE319782CCD006F405C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		3A02CBE519785372006F405C /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +104,7 @@
 		3A02CB8B1975BF24006F405C = {
 			isa = PBXGroup;
 			children = (
+				3A02CBE519785372006F405C /* README */,
 				3A02CB9D1975BF25006F405C /* Lampster */,
 				3A02CBBB1975BF25006F405C /* LampsterTests */,
 				3A02CB961975BF25006F405C /* Frameworks */,

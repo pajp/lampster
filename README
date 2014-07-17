@@ -1,10 +1,11 @@
 LAMPSTER
 ========
 
-An extremely simple LIFX control app for OS X, which lets you turn all your
-bulbs on or off with one click (or keypress). It can be brought to foreground
-at any time by pressing Shift-⌘-L, and the keys 1/0 can be used for the On/Off
-buttons, respectively.
+An extremely simple LIFX control app for OS X, which lets you turn your bulbs on
+or off with one click (or keypress). It can be brought to foreground at any time
+by pressing Shift-⌘-L, and the keys 1/0 can be used for the On/Off buttons,
+respectively. A panel to select which bulbs can be revealed through the "Window"
+menu or by pressing "B".
 
 It is the result of a couple of evenings of hacking to try embedding a Ruby
 helper program and communicating with it using stdio and as such is has a bunch
