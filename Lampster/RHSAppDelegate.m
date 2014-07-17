@@ -77,6 +77,7 @@
                     [lampArray addObject:lamp];
                 }];
                  _self.lamps = lampArray;
+                [_self toggleBulbWindow:nil];
             }
             [_self.table reloadData];
             if (data[@"toggle_count"]) {
