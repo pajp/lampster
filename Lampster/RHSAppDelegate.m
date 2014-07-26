@@ -63,6 +63,7 @@
                 double bulb_count = ((NSNumber*) data[@"bulb_count"]).intValue;
                 if (!_self.firstBulbDiscovered && bulb_count > 0) {
                     _self.firstBulbDiscovered = YES;
+                    [_self enableControls];
                     [_self fadeIn];
                 }
                 _self.levelIndicator.maxValue = [(NSNumber*) data[@"bulb_count"] intValue];
@@ -135,6 +136,11 @@
     }];
 }
 
+- (void)enableControls {
+    [self.onButton setEnabled:YES];
+    [self.offButton setEnabled:YES];
+}
+
 - (void)startSpin {
     [self.spinner startAnimation:nil];
     [self.onButton setEnabled:NO];
@@ -144,8 +150,7 @@
 - (void)stopSpin {
     dispatch_async(dispatch_get_main_queue()
                    , ^{
-                       [self.onButton setEnabled:YES];
-                       [self.offButton setEnabled:YES];
+                       [self enableControls];
                        [self.spinner stopAnimation:nil];
                    });
 }
