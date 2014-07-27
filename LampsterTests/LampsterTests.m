@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "RHSAppDelegate.h"
 
 @interface LampsterTests : XCTestCase
 
@@ -26,9 +27,12 @@
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testLightsOn
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    NSApplication* myApp = [NSApplication sharedApplication];
+    RHSAppDelegate* d = (RHSAppDelegate*) [myApp delegate];
+    [d lightsOn:nil];
+    // TODO: check that lights were turned on
 }
 
 @end

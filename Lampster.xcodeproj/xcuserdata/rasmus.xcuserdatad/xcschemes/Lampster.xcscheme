@@ -26,15 +26,15 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
-      buildConfiguration = "Debug">
+      buildConfiguration = "Test">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3A02CBB41975BF25006F405C"
-               BuildableName = "LampsterTests.xctest"
-               BlueprintName = "LampsterTests"
+               BlueprintIdentifier = "3A02CBF6198556FF006F405C"
+               BuildableName = "LIFXClient Tests.xctest"
+               BlueprintName = "LIFXClient Tests"
                ReferencedContainer = "container:Lampster.xcodeproj">
             </BuildableReference>
          </TestableReference>

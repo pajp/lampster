@@ -17,7 +17,6 @@
 		3A02CBB71975BF25006F405C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A02CBB61975BF25006F405C /* XCTest.framework */; };
 		3A02CBB81975BF25006F405C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A02CB971975BF25006F405C /* Cocoa.framework */; };
 		3A02CBC01975BF25006F405C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3A02CBBE1975BF25006F405C /* InfoPlist.strings */; };
-		3A02CBC21975BF25006F405C /* LampsterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A02CBC11975BF25006F405C /* LampsterTests.m */; };
 		3A02CBCD1975BFCB006F405C /* RHSLIFXClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A02CBCC1975BFCB006F405C /* RHSLIFXClient.m */; };
 		3A02CBCF1975C35E006F405C /* lifxclient.rb in Resources */ = {isa = PBXBuildFile; fileRef = 3A02CBCE1975C35E006F405C /* lifxclient.rb */; };
 		3A02CBDC1976F988006F405C /* DDHotKeyAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A02CBD51976F988006F405C /* DDHotKeyAppDelegate.m */; };
@@ -26,10 +25,18 @@
 		3A02CBDF1976F988006F405C /* DDHotKeyUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A02CBDB1976F988006F405C /* DDHotKeyUtilities.m */; };
 		3A02CBE11976F997006F405C /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A02CBE01976F997006F405C /* Carbon.framework */; };
 		3A02CBE419782CCD006F405C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A02CBE319782CCD006F405C /* QuartzCore.framework */; };
+		3A02CBE91984453E006F405C /* RHSLIFXClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A02CBCC1975BFCB006F405C /* RHSLIFXClient.m */; };
+		3A02CBEF19845B6A006F405C /* lifxclient.rb in Resources */ = {isa = PBXBuildFile; fileRef = 3A02CBCE1975C35E006F405C /* lifxclient.rb */; };
+		3A02CBF2198552DA006F405C /* LampsterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A02CBF1198552DA006F405C /* LampsterTests.m */; };
+		3A02CBF8198556FF006F405C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A02CBB61975BF25006F405C /* XCTest.framework */; };
+		3A02CBFE198556FF006F405C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3A02CBFC198556FF006F405C /* InfoPlist.strings */; };
+		3A02CC0619855736006F405C /* RHSLIFXClientTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A02CBE719843DEE006F405C /* RHSLIFXClientTest.m */; };
+		3A02CC0719855750006F405C /* lifxclient.rb in Resources */ = {isa = PBXBuildFile; fileRef = 3A02CBCE1975C35E006F405C /* lifxclient.rb */; };
+		3A02CC0819855900006F405C /* RHSLIFXClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A02CBCC1975BFCB006F405C /* RHSLIFXClient.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3A02CBB91975BF25006F405C /* PBXContainerItemProxy */ = {
+		3A02CBED19844735006F405C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3A02CB8C1975BF24006F405C /* Project object */;
 			proxyType = 1;
@@ -57,7 +64,6 @@
 		3A02CBB61975BF25006F405C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		3A02CBBD1975BF25006F405C /* LampsterTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LampsterTests-Info.plist"; sourceTree = "<group>"; };
 		3A02CBBF1975BF25006F405C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		3A02CBC11975BF25006F405C /* LampsterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LampsterTests.m; sourceTree = "<group>"; };
 		3A02CBCB1975BFCB006F405C /* RHSLIFXClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RHSLIFXClient.h; sourceTree = "<group>"; };
 		3A02CBCC1975BFCB006F405C /* RHSLIFXClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RHSLIFXClient.m; sourceTree = "<group>"; };
 		3A02CBCE1975C35E006F405C /* lifxclient.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = lifxclient.rb; sourceTree = "<group>"; };
@@ -73,6 +79,13 @@
 		3A02CBE21977002E006F405C /* Lampster.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Lampster.entitlements; sourceTree = "<group>"; };
 		3A02CBE319782CCD006F405C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3A02CBE519785372006F405C /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		3A02CBE719843DEE006F405C /* RHSLIFXClientTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RHSLIFXClientTest.m; path = ../Lampster/RHSLIFXClientTest.m; sourceTree = "<group>"; };
+		3A02CBF1198552DA006F405C /* LampsterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LampsterTests.m; sourceTree = "<group>"; };
+		3A02CBF7198556FF006F405C /* LIFXClient Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LIFXClient Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A02CBFB198556FF006F405C /* LIFXClient Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LIFXClient Tests-Info.plist"; sourceTree = "<group>"; };
+		3A02CBFD198556FF006F405C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3A02CC01198556FF006F405C /* LIFXClient Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LIFXClient Tests-Prefix.pch"; sourceTree = "<group>"; };
+		3A02CC091985594D006F405C /* install-gem-to-target.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "install-gem-to-target.sh"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,15 +108,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3A02CBF4198556FF006F405C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A02CBF8198556FF006F405C /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		3A02CB8B1975BF24006F405C = {
 			isa = PBXGroup;
 			children = (
+				3A02CC091985594D006F405C /* install-gem-to-target.sh */,
 				3A02CBE519785372006F405C /* README */,
 				3A02CB9D1975BF25006F405C /* Lampster */,
 				3A02CBBB1975BF25006F405C /* LampsterTests */,
+				3A02CBF9198556FF006F405C /* LIFXClient Tests */,
 				3A02CB961975BF25006F405C /* Frameworks */,
 				3A02CB951975BF25006F405C /* Products */,
 			);
@@ -114,6 +137,7 @@
 			children = (
 				3A02CB941975BF25006F405C /* Lampster.app */,
 				3A02CBB51975BF25006F405C /* LampsterTests.xctest */,
+				3A02CBF7198556FF006F405C /* LIFXClient Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -179,7 +203,7 @@
 		3A02CBBB1975BF25006F405C /* LampsterTests */ = {
 			isa = PBXGroup;
 			children = (
-				3A02CBC11975BF25006F405C /* LampsterTests.m */,
+				3A02CBF1198552DA006F405C /* LampsterTests.m */,
 				3A02CBBC1975BF25006F405C /* Supporting Files */,
 			);
 			path = LampsterTests;
@@ -190,6 +214,25 @@
 			children = (
 				3A02CBBD1975BF25006F405C /* LampsterTests-Info.plist */,
 				3A02CBBE1975BF25006F405C /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3A02CBF9198556FF006F405C /* LIFXClient Tests */ = {
+			isa = PBXGroup;
+			children = (
+				3A02CBE719843DEE006F405C /* RHSLIFXClientTest.m */,
+				3A02CBFA198556FF006F405C /* Supporting Files */,
+			);
+			path = "LIFXClient Tests";
+			sourceTree = "<group>";
+		};
+		3A02CBFA198556FF006F405C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3A02CBFB198556FF006F405C /* LIFXClient Tests-Info.plist */,
+				3A02CBFC198556FF006F405C /* InfoPlist.strings */,
+				3A02CC01198556FF006F405C /* LIFXClient Tests-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -222,15 +265,34 @@
 				3A02CBB11975BF25006F405C /* Sources */,
 				3A02CBB21975BF25006F405C /* Frameworks */,
 				3A02CBB31975BF25006F405C /* Resources */,
+				3A02CBF019845BF6006F405C /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				3A02CBBA1975BF25006F405C /* PBXTargetDependency */,
+				3A02CBEE19844735006F405C /* PBXTargetDependency */,
 			);
 			name = LampsterTests;
 			productName = LampsterTests;
 			productReference = 3A02CBB51975BF25006F405C /* LampsterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3A02CBF6198556FF006F405C /* LIFXClient Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3A02CC02198556FF006F405C /* Build configuration list for PBXNativeTarget "LIFXClient Tests" */;
+			buildPhases = (
+				3A02CBF3198556FF006F405C /* Sources */,
+				3A02CBF4198556FF006F405C /* Frameworks */,
+				3A02CBF5198556FF006F405C /* Resources */,
+				3A02CC0A198559D5006F405C /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "LIFXClient Tests";
+			productName = "LIFXClient Tests";
+			productReference = 3A02CBF7198556FF006F405C /* LIFXClient Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -254,6 +316,9 @@
 					3A02CBB41975BF25006F405C = {
 						TestTargetID = 3A02CB931975BF24006F405C;
 					};
+					3A02CBF6198556FF006F405C = {
+						TestTargetID = 3A02CB931975BF24006F405C;
+					};
 				};
 			};
 			buildConfigurationList = 3A02CB8F1975BF24006F405C /* Build configuration list for PBXProject "Lampster" */;
@@ -271,6 +336,7 @@
 			targets = (
 				3A02CB931975BF24006F405C /* Lampster */,
 				3A02CBB41975BF25006F405C /* LampsterTests */,
+				3A02CBF6198556FF006F405C /* LIFXClient Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -292,7 +358,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A02CBEF19845B6A006F405C /* lifxclient.rb in Resources */,
 				3A02CBC01975BF25006F405C /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3A02CBF5198556FF006F405C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A02CC0719855750006F405C /* lifxclient.rb in Resources */,
+				3A02CBFE198556FF006F405C /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,7 +386,33 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh -xe";
-			shellScript = "export OUR_GEM_HOME=\"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/gems\"\nmkdir -p ${OUR_GEM_HOME}\nif ! [ -d \"${OUR_GEM_HOME}/gems/lifx\"* ] ; then\n    GEM_HOME=\"${OUR_GEM_HOME}\" gem install lifx\nelse\n    echo \"LIFX gem already installed\"\nfi";
+			shellScript = "./install-gem-to-target.sh";
+		};
+		3A02CBF019845BF6006F405C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./install-gem-to-target.sh";
+		};
+		3A02CC0A198559D5006F405C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./install-gem-to-target.sh";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -333,17 +435,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A02CBC21975BF25006F405C /* LampsterTests.m in Sources */,
+				3A02CBE91984453E006F405C /* RHSLIFXClient.m in Sources */,
+				3A02CBF2198552DA006F405C /* LampsterTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3A02CBF3198556FF006F405C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A02CC0819855900006F405C /* RHSLIFXClient.m in Sources */,
+				3A02CC0619855736006F405C /* RHSLIFXClientTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3A02CBBA1975BF25006F405C /* PBXTargetDependency */ = {
+		3A02CBEE19844735006F405C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3A02CB931975BF24006F405C /* Lampster */;
-			targetProxy = 3A02CBB91975BF25006F405C /* PBXContainerItemProxy */;
+			targetProxy = 3A02CBED19844735006F405C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -376,6 +488,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				3A02CBBF1975BF25006F405C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3A02CBFC198556FF006F405C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3A02CBFD198556FF006F405C /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -523,6 +643,129 @@
 			};
 			name = Release;
 		};
+		3A02CBEA1984463C006F405C /* Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Test;
+		};
+		3A02CBEB1984463C006F405C /* Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Lampster/Lampster-Prefix.pch";
+				INFOPLIST_FILE = "Lampster/Lampster-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Test;
+		};
+		3A02CBEC1984463C006F405C /* Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Lampster.app/Contents/MacOS/Lampster";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Lampster/Lampster-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "LampsterTests/LampsterTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Test;
+		};
+		3A02CC03198556FF006F405C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LIFXClient Tests/LIFXClient Tests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "LIFXClient Tests/LIFXClient Tests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		3A02CC04198556FF006F405C /* Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LIFXClient Tests/LIFXClient Tests-Prefix.pch";
+				INFOPLIST_FILE = "LIFXClient Tests/LIFXClient Tests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Test;
+		};
+		3A02CC05198556FF006F405C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LIFXClient Tests/LIFXClient Tests-Prefix.pch";
+				INFOPLIST_FILE = "LIFXClient Tests/LIFXClient Tests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -530,6 +773,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3A02CBC31975BF25006F405C /* Debug */,
+				3A02CBEA1984463C006F405C /* Test */,
 				3A02CBC41975BF25006F405C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -539,15 +783,28 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3A02CBC61975BF25006F405C /* Debug */,
+				3A02CBEB1984463C006F405C /* Test */,
 				3A02CBC71975BF25006F405C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3A02CBC81975BF25006F405C /* Build configuration list for PBXNativeTarget "LampsterTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3A02CBC91975BF25006F405C /* Debug */,
+				3A02CBEC1984463C006F405C /* Test */,
 				3A02CBCA1975BF25006F405C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3A02CC02198556FF006F405C /* Build configuration list for PBXNativeTarget "LIFXClient Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3A02CC03198556FF006F405C /* Debug */,
+				3A02CC04198556FF006F405C /* Test */,
+				3A02CC05198556FF006F405C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

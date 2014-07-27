@@ -20,7 +20,9 @@
 //        [reader setFileHandle:[NSFileHandle fileHandleWithNullDevice]];
 //    }
     rubyclient = [[NSTask alloc] init];
-    rubyclient.launchPath = [[NSBundle bundleForClass:self.class] pathForResource:@"lifxclient" ofType:@"rb"];
+    NSString* launchPath = [[NSBundle bundleForClass:self.class] pathForResource:@"lifxclient" ofType:@"rb"];
+    NSLog(@"Ruby client launch path: %@", launchPath);
+    rubyclient.launchPath = launchPath;
     [rubyclient setEnvironment:@{@"GEM_HOME" : [[NSBundle bundleForClass:self.class] pathForResource:@"gems" ofType:@""]}];
     rubyclient.standardInput = clientinput = [NSPipe pipe];
     NSPipe* stdout = [NSPipe pipe];
@@ -31,10 +33,11 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         NSData* stderrData = [[stderr fileHandleForReading] readDataToEndOfFile];
         if (stderrData.length > 0) {
-            NSLog(@"LIFX client error: %@", [[NSString alloc] initWithData:stderrData encoding:NSUTF8StringEncoding]);
+            NSString* clientError = [[NSString alloc] initWithData:stderrData encoding:NSUTF8StringEncoding];
+            NSLog(@"LIFX client error: %@", clientError);
             if (!self.errorHandler) return;
             
-            self.errorHandler([[NSError alloc] initWithDomain:@"nu.dll.lifxclient" code:1 userInfo:@{}]);
+            self.errorHandler([[NSError alloc] initWithDomain:@"nu.dll.lifxclient" code:1 userInfo:@{NSLocalizedDescriptionKey:clientError}]);
         }
     });
 }
@@ -79,7 +82,7 @@
     dispatch_async(lifxqueue, ^{
         NSError* error = nil;
         if (![self waitFor:escape]) {
-            error = [NSError errorWithDomain:@"nu.dll.lifxclient" code:2 userInfo:@{}];
+            error = [NSError errorWithDomain:@"nu.dll.lifxclient" code:2 userInfo:@{ NSLocalizedDescriptionKey : [NSString stringWithFormat:@"Gave up waiting for \"%@\" reply", escape ]}];
         }
         if (completionHandler) completionHandler(error);
     });
@@ -90,7 +93,9 @@
     NSDictionary* dict = [NSJSONSerialization JSONObjectWithData:[jsonData dataUsingEncoding:NSUTF8StringEncoding] options:0 error:&error];
     if (!error) {
         self.lastData = dict;
-        self.dataHandler(dict);
+        if (self.dataHandler) {
+            self.dataHandler(dict);
+        }
     } else {
         NSLog(@"JSON parse error: %@", error);
     }
@@ -105,7 +110,7 @@
     while (!stop && (readcount = read(fd, &byte, 1)) != -1) {
         if (readcount != 1) {
             NSLog(@"Error: read %zu bytes instead of 1", readcount);
-            exit(1);
+            return;
         }
         [buffer appendBytes:&byte length:1];
         if (byte == '\n') {
