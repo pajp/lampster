@@ -4,6 +4,9 @@ require 'lifx'
 require 'json'
 STDOUT.sync = true
 
+@SELECTED_TAG = "rhs-selected"
+
+
 puts "Hello."
 @client = LIFX::Client.lan
 @selected_bulbs = []
@@ -66,6 +69,7 @@ else
     @client.lights.lights.each { | light|
         lightdata[light.id] = { :id => light.id, :label => light.label }
         @selected_bulbs.push light.id
+        light.add_tag @SELECTED_TAG
     }
     data = {:bulb_count => @client.lights.count, :scan_time => scan_time, :lights => lightdata }
     puts ": #{JSON.generate(data)}"
@@ -74,11 +78,19 @@ puts "Ready."
 
 #on = ARGV[0] == "on" ? true : false;
 
+
 ARGF.each do |line|
     puts "ACK #{line}"
     if /^select-bulbs *(?<bulbids>[0-9a-f ]*)$/ =~ line
         puts "Bulb IDs selected: \"#{bulbids}\""
         @selected_bulbs = bulbids.split " "
+        @client.lights.each do | light |
+            if @selected_bulbs.include? light.id
+                light.add_tag @SELECTED_TAG
+            else
+                light.remove_tag @SELECTED_TAG
+            end
+        end
         puts "OK"
     end
     if line =~ /^lights-on$/
@@ -97,7 +109,7 @@ ARGF.each do |line|
     end
     if /^set-color *(?<hue>[0-9.]*) (?<saturation>[0-9.]*) (?<brightness>[0-9.]*)$/ =~ line
         puts "Received Hue #{hue} Saturation #{saturation} Brightness #{brightness}"
-        @client.lights.set_color(LIFX::Color::hsb(hue.to_f, saturation.to_f, brightness.to_f))
+        @client.lights.with_tag(@SELECTED_TAG).set_color(LIFX::Color::hsb(hue.to_f, saturation.to_f, brightness.to_f))
         puts "OK"
     end
     if line =~ /^lights-status$/
