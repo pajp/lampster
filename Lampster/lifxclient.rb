@@ -77,6 +77,16 @@ ARGF.each do |line|
     if line =~ /^lights-off$/
         toggle_all(false)
     end
+    if line =~ /^lights-status$/
+        @client.refresh # note: refresh is asynchronous so light status may not
+        lights = []     # be immediately visible
+        @client.lights.each do | light |
+            lights.push({ "id" => light.id, "power" => light.power })
+        end
+        data = { "lights-status" => lights }
+        puts ": #{JSON.generate(data)}"
+        puts "OK"
+    end
     if line =~ /^ping$/
         puts "OK"
     end

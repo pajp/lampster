@@ -21,6 +21,7 @@
 @property (nonatomic, copy) void (^errorHandler)(NSError*);
 @property (nonatomic, copy) void (^dataHandler)(NSDictionary*);
 -(id) initWithErrorHandler:(void (^)(NSError*)) errorHandler;
+-(void) lightsStatus:(void (^)(NSError*, NSArray*)) completionHandler;
 -(void) lightsOn:(void (^)(NSError*)) completionHandler;
 -(void) lightsOff:(void (^)(NSError*)) completionHandler;
 -(void) waitForReady:(void (^)(NSError*)) completionHandler;

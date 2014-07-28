@@ -166,6 +166,16 @@
     [clientinput.fileHandleForWriting writeData:[[NSString stringWithFormat:@"%@\n", command] dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
+-(void) lightsStatus:(void (^)(NSError*, NSArray*)) completionHandler {
+    [self send:@"lights-status" andExpect:@"OK" completionHandler:^(NSError *error) {
+        if (error) {
+            completionHandler(error, nil);
+        } else {
+            completionHandler(nil, self.lastData[@"lights-status"]);
+        }
+    }];
+}
+
 -(void) lightsOn:(void (^)(NSError*)) completionHandler {
     [self send:@"lights-on" andExpect:@"OK" completionHandler:completionHandler];
 }
