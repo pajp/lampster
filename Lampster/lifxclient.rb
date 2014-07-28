@@ -8,6 +8,16 @@ puts "Hello."
 @client = LIFX::Client.lan
 @selected_bulbs = []
 def toggle_all(state)
+    if state
+        @client.lights.turn_on
+    else
+        @client.lights.turn_off
+    end
+    puts ": #{JSON.generate({:toggle_count => @client.lights.count})}"
+    puts "OK"
+end
+
+def toggle_selected(state)
     on = state
     toggle_count = 0
     @client.lights.lights.each { |light|
@@ -72,10 +82,18 @@ ARGF.each do |line|
         puts "OK"
     end
     if line =~ /^lights-on$/
-        toggle_all(true)
+        if @selected_bulbs.count == @client.lights.count
+            toggle_all(true)
+        else
+            toggle_selected(true)
+        end
     end
     if line =~ /^lights-off$/
-        toggle_all(false)
+        if @selected_bulbs.count == @client.lights.count
+            toggle_all(false)
+        else
+            toggle_selected(false)
+        end
     end
     if line =~ /^lights-status$/
         @client.refresh # note: refresh is asynchronous so light status may not
