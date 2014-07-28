@@ -123,6 +123,17 @@
     a.animationBlockingMode = NSAnimationNonblocking;
     [a startAnimation];
 }
+- (IBAction)colorAction:(NSColorWell*)sender {
+    CGFloat hue, saturation, brightness, alpha;
+    [sender.color getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha];
+    hue *= 360.0;
+    NSLog(@"%s: %f %f %f", __func__, hue, saturation, brightness);
+    [self.lifxClient setColorHue:hue saturation:saturation brightness:brightness completionHandler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error setting color: %@", error);
+        }
+    }];
+}
 
 - (void)fadeIn {
     CABasicAnimation* a = [CABasicAnimation animation];

@@ -12,6 +12,7 @@
 @interface RHSAppDelegate : NSObject <NSApplicationDelegate, NSTableViewDataSource, NSTableViewDelegate>
 
 - (IBAction)lightsOn:(id)sender;
+@property (weak) IBOutlet NSColorWell *colorWell;
 
 @property BOOL firstBulbDiscovered;
 @property (weak) IBOutlet NSButton *onButton;

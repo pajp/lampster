@@ -95,6 +95,11 @@ ARGF.each do |line|
             toggle_selected(false)
         end
     end
+    if /^set-color *(?<hue>[0-9.]*) (?<saturation>[0-9.]*) (?<brightness>[0-9.]*)$/ =~ line
+        puts "Received Hue #{hue} Saturation #{saturation} Brightness #{brightness}"
+        @client.lights.set_color(LIFX::Color::hsb(hue.to_f, saturation.to_f, brightness.to_f))
+        puts "OK"
+    end
     if line =~ /^lights-status$/
         @client.refresh # note: refresh is asynchronous so light status may not
         lights = []     # be immediately visible

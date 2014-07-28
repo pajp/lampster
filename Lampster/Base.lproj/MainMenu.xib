@@ -15,6 +15,7 @@
             <connections>
                 <outlet property="bulbWindow" destination="TwU-7Q-sOA" id="JEy-aV-Lmm"/>
                 <outlet property="bulbWindpw" destination="TwU-7Q-sOA" id="xWH-wa-LAX"/>
+                <outlet property="colorWell" destination="SI3-4d-MYC" id="uFa-e8-UiC"/>
                 <outlet property="levelIndicator" destination="aIh-rr-EM0" id="o6Z-ct-8oS"/>
                 <outlet property="offButton" destination="2Di-OE-yFO" id="hQN-wt-2Kt"/>
                 <outlet property="onButton" destination="MeR-CO-tw5" id="h7i-Ar-kpa"/>
@@ -86,14 +87,14 @@
         </menu>
         <window title="Lampster" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" appearanceType="lightContent" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES"/>
-            <rect key="contentRect" x="843" y="437" width="87" height="134"/>
+            <rect key="contentRect" x="843" y="437" width="87" height="168"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="87" height="134"/>
+                <rect key="frame" x="0.0" y="0.0" width="87" height="168"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" alphaValue="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="MeR-CO-tw5">
-                        <rect key="frame" x="14" y="86" width="59" height="32"/>
+                        <rect key="frame" x="14" y="120" width="59" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="On" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ARW-6d-s3r">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -105,7 +106,7 @@
                         </connections>
                     </button>
                     <button wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" alphaValue="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="2Di-OE-yFO">
-                        <rect key="frame" x="14" y="53" width="60" height="32"/>
+                        <rect key="frame" x="14" y="87" width="60" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Off" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="r4z-kD-rfQ">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -117,11 +118,11 @@
                         </connections>
                     </button>
                     <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="blr-Bg-2Gg">
-                        <rect key="frame" x="35" y="40" width="16" height="16"/>
+                        <rect key="frame" x="35" y="74" width="16" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </progressIndicator>
                     <levelIndicator wantsLayer="YES" appearanceType="lightContent" verticalHuggingPriority="750" fixedFrame="YES" alphaValue="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="aIh-rr-EM0">
-                        <rect key="frame" x="20" y="18" width="47" height="18"/>
+                        <rect key="frame" x="20" y="52" width="47" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <shadow key="shadow" blurRadius="3">
                             <size key="offset" width="3" height="-3"/>
@@ -129,6 +130,14 @@
                         </shadow>
                         <levelIndicatorCell key="cell" alignment="left" maxValue="1" id="J7m-wt-2dp"/>
                     </levelIndicator>
+                    <colorWell appearanceType="lightContent" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SI3-4d-MYC">
+                        <rect key="frame" x="21" y="20" width="44" height="23"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <connections>
+                            <action selector="colorAction:" target="Voe-Tx-rLC" id="fzV-rX-dPG"/>
+                        </connections>
+                    </colorWell>
                 </subviews>
             </view>
         </window>
@@ -189,7 +198,7 @@
                             <rect key="frame" x="1" y="1" width="0.0" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="37" horizontal="NO" id="lmK-yy-Oa2">
+                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="lmK-yy-Oa2">
                             <rect key="frame" x="-15" y="17" width="16" height="0.0"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>

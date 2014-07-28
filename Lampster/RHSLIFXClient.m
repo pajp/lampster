@@ -166,6 +166,10 @@
     [clientinput.fileHandleForWriting writeData:[[NSString stringWithFormat:@"%@\n", command] dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
+-(void) setColorHue:(CGFloat)hue saturation:(CGFloat)saturation brightness:(CGFloat)brightness completionHandler:(void (^)(NSError*)) completionHandler {
+    [self send:[NSString stringWithFormat:@"set-color %f %f %f", hue, saturation, brightness] andExpect:@"OK" completionHandler:completionHandler];
+}
+
 -(void) lightsStatus:(void (^)(NSError*, NSArray*)) completionHandler {
     [self send:@"lights-status" andExpect:@"OK" completionHandler:^(NSError *error) {
         if (error) {
