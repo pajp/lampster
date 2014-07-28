@@ -49,25 +49,68 @@
         error = _error;
     };
     ((void (*)(id, SEL, id))[client methodForSelector:selector])(client, selector, handler);
+
+    [self waitFor:^BOOL { return handlerCalled; } seconds:10];
+    XCTAssert(error == nil, @"Error happened: %@", error);
+}
+
+- (NSArray*)invokeAndWaitForArrayHandler:(SEL) selector onClient:(RHSLIFXClient*) client
+{
+    __block NSError* error = nil;
+    __block NSArray* array = nil;
+    __block BOOL handlerCalled = NO;
+    void (^handler)(NSError*,NSArray*) = ^void(NSError* _error, NSArray* _array) {
+        handlerCalled = YES;
+        XCTAssert(_error == nil, @"Error happened: %@", _error);
+        error = _error;
+        array = _array;
+    };
+    ((void (*)(id, SEL, id))[client methodForSelector:selector])(client, selector, handler);
+    [self waitFor:^BOOL { return handlerCalled; } seconds:10];
+    XCTAssert(error == nil, @"Error happened: %@", error);
+    XCTAssert(array != nil, @"Returned nil array: %@", error);
+    return array;
+}
+
+- (BOOL) waitFor:(BOOL (^)())block seconds:(NSTimeInterval)timeout
+{
     time_t starttime = time(NULL);
-    while (time(NULL) - starttime < 10) {
-        if (handlerCalled && !error) {
-            return;
+    while (time(NULL) - starttime < timeout) {
+        if (block()) {
+            return YES;
         }
-        NSLog(@"Waiting for completion handler…");
         usleep(100000);
     }
-    XCTAssert(error == nil, @"Error happened: %@", error);
+    return NO;
+}
+#define ON_STATE YES
+#define OFF_STATE NO
+- (BOOL)allBulbsAtState:(BOOL)desiredStateIsOn
+{
+    NSArray* lights = [self invokeAndWaitForArrayHandler:@selector(lightsStatus:) onClient:self.client];
+    __block BOOL allLightsAtState = YES;
+    [lights enumerateObjectsUsingBlock:^(NSDictionary* obj, NSUInteger idx, BOOL *stop) {
+        if ([obj[@"power"] isEqualToString:desiredStateIsOn ? @"off": @"on"]) {
+            allLightsAtState= NO;
+        }
+    }];
+    return allLightsAtState;
 }
 
 - (void)testBulbsOn
 {
     [self invokeAndWaitForHandler:@selector(lightsOn:) onClient:self.client];
+    XCTAssert([self waitFor:^BOOL{
+        return [self allBulbsAtState:ON_STATE];
+    } seconds:5], @"Not all lights on");
 }
 
 - (void)testBulbsOff
 {
     [self invokeAndWaitForHandler:@selector(lightsOff:) onClient:self.client];
+    XCTAssert([self waitFor:^BOOL{
+        return [self allBulbsAtState:OFF_STATE];
+    } seconds:5], @"Not all lights off");
 }
 
 @end
