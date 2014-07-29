@@ -26,11 +26,15 @@
         //NSLog(@"ERROR: %@", error);
         XCTFail(@"LIFX client error %@", error);
     }];
+    NSColor* white = [[NSColor whiteColor] colorUsingColorSpace:[NSColorSpace genericRGBColorSpace]];
+    [self.client setColor:white completionHandler:nil];
+    [self.client lightsOn:nil];
 }
 
 - (void)tearDown
 {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
+    NSColor* white = [[NSColor whiteColor] colorUsingColorSpace:[NSColorSpace genericRGBColorSpace]];
+    [self.client setColor:white completionHandler:nil];
     [super tearDown];
 }
 
