@@ -4,7 +4,7 @@ require 'lifx'
 require 'json'
 STDOUT.sync = true
 
-@SELECTED_TAG = "rhs-selected"
+@SELECTED_TAG = "Selected in Lampster"
 
 
 puts "Hello."
