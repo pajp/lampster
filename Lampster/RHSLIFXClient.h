@@ -20,6 +20,7 @@
 @property (retain) NSDictionary* lastData;
 @property (nonatomic, copy) void (^errorHandler)(NSError*);
 @property (nonatomic, copy) void (^dataHandler)(NSDictionary*);
+-(void) setColor:(NSColor*) color completionHandler:(void (^)(NSError*)) completionHandler;
 -(void) setColorHue:(CGFloat)hue saturation:(CGFloat)saturation brightness:(CGFloat)brightness completionHandler:(void (^)(NSError*)) completionHandler;
 -(id) initWithErrorHandler:(void (^)(NSError*)) errorHandler;
 -(void) lightsStatus:(void (^)(NSError*, NSArray*)) completionHandler;
