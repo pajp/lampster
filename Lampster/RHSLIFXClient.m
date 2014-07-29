@@ -151,7 +151,7 @@
             lastCommand = nil;
             lastExpect = nil;
             lastCompletionHandler = nil;
-            completionHandler(nil);
+            if (completionHandler) completionHandler(nil);
         }
     });
 }
