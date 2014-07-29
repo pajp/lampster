@@ -116,7 +116,11 @@ ARGF.each do |line|
         @client.refresh # note: refresh is asynchronous so light status may not
         lights = []     # be immediately visible
         @client.lights.each do | light |
-            lights.push({ "id" => light.id, "power" => light.power })
+            color = light.color
+            lights.push({ "id" => light.id, "power" => light.power,
+                          "hue" => color.hue, "saturation" => color.saturation,
+                          "brightness" => color.brightness,
+                          "kelvin" => color.kelvin })
         end
         data = { "lights-status" => lights }
         puts ": #{JSON.generate(data)}"
