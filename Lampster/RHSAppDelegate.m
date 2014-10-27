@@ -97,6 +97,7 @@
     [hkc registerHotKey:[DDHotKey hotKeyWithKeyCode:37 modifierFlags:NSShiftKeyMask|NSCommandKeyMask task:^(NSEvent *event) {
         NSLog(@"Got hot key event! %@", event);
         [NSApp activateIgnoringOtherApps:YES];
+        [self.bulbWindow setIsVisible:YES];
     }]];
     BOOL firstRun = ![[NSUserDefaults standardUserDefaults] boolForKey:@"run-once"];
     self.firstBulbDiscovered = NO;
