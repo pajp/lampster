@@ -47,6 +47,44 @@
     [self.window setIsVisible:!self.window.isVisible];
 }
 
+- (void) toggleLampFromDockMenu:(NSMenuItem*) sender {
+    NSLog(@"hullo %@", sender);
+    NSDictionary* lamp = sender.representedObject;
+    BOOL newState = [lamp[@"power"] isEqualTo:@( 1 )] ? 0 : 1;
+    [self.lifxClient lightSet:lamp[@"id"] toState:newState completionHandler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error toggling lamp: %@", error);
+        }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self updateLampStatus];
+            /* get a status update again to ensure we have fresh data (refresh is asyncronous) */
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self updateLampStatus];
+            });
+        });
+    }];
+}
+
+- (NSMenu*) applicationDockMenu:(NSApplication *)sender {
+    NSMenu* dockMenu = [NSMenu new];
+    [self.lamps enumerateObjectsUsingBlock:^(NSDictionary* obj, NSUInteger idx, BOOL *stop) {
+        NSMenuItem* item = [NSMenuItem new];
+        item.title = [NSString stringWithFormat:@"%@ %@", obj[@"label"], [obj[@"power"] isEqualTo:@(1)] ? @"💡" : @""];
+        [item setEnabled:YES];
+        [item setRepresentedObject:obj];
+        [item setAction:@selector(toggleLampFromDockMenu:)];
+        [dockMenu addItem:item];
+    }];
+    NSMenuItem* separator = [NSMenuItem separatorItem];
+    [dockMenu addItem:separator];
+    NSMenuItem* item = [NSMenuItem new];
+    item.title = @"Refresh bulbs";
+    [item setEnabled:YES];
+    item.action = @selector(updateLampStatus);
+    [dockMenu addItem:item];
+    return dockMenu;
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     DDHotKeyCenter* hkc = [DDHotKeyCenter sharedHotKeyCenter];
