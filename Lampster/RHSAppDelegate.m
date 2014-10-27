@@ -39,6 +39,12 @@
             }];
     }
 }
+
+- (BOOL) applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag {
+    [self.bulbWindow setIsVisible:YES];
+    return YES;
+}
+
 - (IBAction)toggleBulbWindow:(id)sender {
     [self.bulbWindow setIsVisible:!self.bulbWindow.isVisible];
 }
