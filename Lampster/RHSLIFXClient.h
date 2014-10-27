@@ -23,6 +23,7 @@
 -(void) setColor:(NSColor*) color completionHandler:(void (^)(NSError*)) completionHandler;
 -(void) setColorHue:(CGFloat)hue saturation:(CGFloat)saturation brightness:(CGFloat)brightness completionHandler:(void (^)(NSError*)) completionHandler;
 -(id) initWithErrorHandler:(void (^)(NSError*)) errorHandler;
+-(void) lightSet:(NSString*) lampId toState:(BOOL) state completionHandler:(void (^)(NSError*)) completionHandler;
 -(void) lightsStatus:(void (^)(NSError*, NSArray*)) completionHandler;
 -(void) lightsOn:(void (^)(NSError*)) completionHandler;
 -(void) lightsOff:(void (^)(NSError*)) completionHandler;

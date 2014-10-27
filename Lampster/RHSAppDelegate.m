@@ -26,22 +26,25 @@
 }
 
 - (void)tableView:(NSTableView *)aTableView setObjectValue:(id)anObject forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex {
-    self.lamps[rowIndex][aTableColumn.identifier] = anObject;
-    NSMutableArray* selectedBulbIds = [NSMutableArray new];
-    [self.lamps enumerateObjectsUsingBlock:^(NSDictionary* lamp, NSUInteger idx, BOOL *stop) {
-        if (((NSNumber*)lamp[@"enabled"]).boolValue) {
-            [selectedBulbIds addObject:lamp[@"id"]];
-        }
-    }];
-    [self.lifxClient selectBulbs:selectedBulbIds];
+    if ([aTableColumn.identifier isEqualToString:@"power"]) {
+            [self.lifxClient lightSet:self.lamps[rowIndex][@"id"] toState:((NSNumber*) anObject).boolValue completionHandler:^(NSError *error) {
+                if (!error) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        self.lamps[rowIndex][aTableColumn.identifier] = anObject;
+                        [aTableView reloadData];
+                    });
+                } else {
+                    NSLog(@"An error occurred trying to set lamp status: %@", error);
+                }
+            }];
+    }
+}
+- (IBAction)toggleBulbWindow:(id)sender {
+    [self.bulbWindow setIsVisible:!self.bulbWindow.isVisible];
 }
 
-- (IBAction)toggleBulbWindow:(id)sender {
-    [self.bulbWindow setAlphaValue:0.0];
-    [self.bulbWindow setIsVisible:!self.bulbWindow.isVisible];
-    if ([self.bulbWindow isVisible]) {
-        [self fadeInWindow:self.bulbWindow];
-    }
+- (IBAction)toggleBulkWindow:(id)sender {
+    [self.window setIsVisible:!self.window.isVisible];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -58,6 +61,7 @@
     self.lifxClient = [RHSLIFXClient new];
     __weak RHSAppDelegate* _self = self;
     self.lifxClient.dataHandler = ^void(NSDictionary* data) {
+        NSLog(@"Received data object: %@", data);
         dispatch_async(dispatch_get_main_queue(), ^{
             if (data[@"bulb_count"]) {
                 double bulb_count = ((NSNumber*) data[@"bulb_count"]).intValue;
@@ -74,12 +78,12 @@
                 NSMutableArray* lampArray = [NSMutableArray new];
                 [lamps.allKeys enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                     NSMutableDictionary* lamp = [NSMutableDictionary dictionaryWithDictionary:lamps[obj]];
-                    lamp[@"enabled"] = @( 1 );
                     [lampArray addObject:lamp];
                 }];
                  _self.lamps = lampArray;
+                [_self updateLampStatus];
                 if (firstRun) {
-                    if (!_self.bulbWindow.isVisible) [_self toggleBulbWindow:nil];
+                    if (!_self.bulbWindow.isVisible) [_self toggleBulkWindow:nil];
                     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"run-once"];
                 }
             }
@@ -94,6 +98,7 @@
         if (!error) {
             [self stopSpin];
             dispatch_async(dispatch_get_main_queue(), ^{
+                self.bulbWindow.title = @"LIFX bulbs";
             });
         } else {
             NSLog(@"Error waiting for LIFX readiness: %@", error);
@@ -103,7 +108,7 @@
     };
 
     [self.bulbWindow setOpaque:NO];
-    [self.bulbWindow setAlphaValue:0.0];
+    [self.bulbWindow setAlphaValue:0.9];
 
     /* For some reason drop shadow disappears when I try to fade in the main
        window, so I'll leave it out for now */
@@ -111,8 +116,9 @@
 //    [self.window setAlphaValue:0.0];
 //    [self fadeInWindow:self.window];
 //    [self.window setIsVisible:YES];
-
-    [self.lifxClient waitForReady:restartingCompletionHandler];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self.lifxClient waitForReady:restartingCompletionHandler];
+    });
 }
 
 - (void)fadeInWindow:(NSWindow*) window {
@@ -124,7 +130,8 @@
     [a startAnimation];
 }
 - (IBAction)colorAction:(NSColorWell*)sender {
-    [self.lifxClient setColor:sender.color completionHandler:^(NSError *error) {
+    NSColor* normalizedColor = [sender.color colorUsingColorSpace:[NSColorSpace genericRGBColorSpace]];
+    [self.lifxClient setColor:normalizedColor completionHandler:^(NSError *error) {
         if (error) {
             NSLog(@"Error setting color: %@", error);
         }
@@ -162,11 +169,36 @@
                    });
 }
 
+- (void)updateLampStatus {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.bulbWindow.title = @"Updating bulb status…";
+    });
+    [self.lifxClient lightsStatus:^(NSError *error, NSArray *lights) {
+        if (error) {
+            NSLog(@"Error getting bulb status: %@", error);
+            return;
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.bulbWindow.title = @"LIFX bulbs";
+        });
+        [self.lamps enumerateObjectsUsingBlock:^(NSMutableDictionary* lampsObj, NSUInteger idx, BOOL *stop) {
+            [lights enumerateObjectsUsingBlock:^(NSDictionary* statusObj, NSUInteger idx, BOOL *stop) {
+                if ([lampsObj[@"id"] isEqualToString:statusObj[@"id"]]) {
+                    [lampsObj addEntriesFromDictionary:statusObj];
+                }
+            }];
+            lampsObj[@"power"] = [lampsObj[@"power"] isEqualToString:@"on"] ? @( 1 ) : @( 0 );
+            NSLog(@"Lamp %@ power: %@", lampsObj[@"id"], lampsObj[@"power"]);
+        }];
+    }];
+}
+
 - (IBAction)lightsOn:(id)sender {
     [self startSpin];
     [self.levelIndicator setDoubleValue:0.0];
     [self.lifxClient lightsOn:^(NSError *error) {
         [self stopSpin];
+        [self updateLampStatus];
     }];
 }
 
@@ -175,6 +207,7 @@
     [self.levelIndicator setDoubleValue:0.0];
     [self.lifxClient lightsOff:^(NSError *error) {
         [self stopSpin];
+        [self updateLampStatus];
     }];
 }
 

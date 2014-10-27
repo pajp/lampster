@@ -20,6 +20,22 @@ def toggle_all(state)
     puts "OK"
 end
 
+def toggle_one(lampid, state)
+    @client.lights.lights.each { |light|
+        puts "Light #{light.id}"
+        if light.id == lampid
+            if state.to_i == 1
+                puts "Turning on #{light.id}"
+                light.turn_on!
+            else
+                puts "Turning off #{light.id}"
+                light.turn_off
+            end
+        end
+    }
+    puts "OK"
+end
+
 def toggle_selected(state)
     on = state
     toggle_count = 0
@@ -92,6 +108,9 @@ ARGF.each do |line|
             end
         end
         puts "OK"
+    end
+    if /^light-set *(?<lampid>[0-9a-f]+) *(?<state>[01]{1})$/ =~ line
+        toggle_one(lampid, state)
     end
     if line =~ /^lights-on$/
         if @selected_bulbs.count == @client.lights.count

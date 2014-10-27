@@ -30,16 +30,22 @@
     rubyclient.standardOutput = stdout;
     rubyclient.standardError = stderr;
     [rubyclient launch];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        NSData* stderrData = [[stderr fileHandleForReading] readDataToEndOfFile];
-        if (stderrData.length > 0) {
-            NSString* clientError = [[NSString alloc] initWithData:stderrData encoding:NSUTF8StringEncoding];
-            NSLog(@"LIFX client error: %@", clientError);
-            if (!self.errorHandler) return;
-            
-            self.errorHandler([[NSError alloc] initWithDomain:@"nu.dll.lifxclient" code:1 userInfo:@{NSLocalizedDescriptionKey:clientError}]);
-        }
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self readStandardError:stderr];
     });
+
+}
+
+-(void) readStandardError:(NSPipe*) stderr {
+    NSData* stderrData = [[stderr fileHandleForReading] readDataToEndOfFile];
+    if (stderrData.length > 0) {
+        NSString* clientError = [[NSString alloc] initWithData:stderrData encoding:NSUTF8StringEncoding];
+        NSLog(@"LIFX client error: %@", clientError);
+        if (!self.errorHandler) return;
+        
+        self.errorHandler([[NSError alloc] initWithDomain:@"nu.dll.lifxclient" code:1 userInfo:@{NSLocalizedDescriptionKey:clientError}]);
+    }
 }
 
 -(id) initWithErrorHandler:(void (^)(NSError*)) errorHandler {
@@ -109,6 +115,9 @@
     NSMutableData* buffer = [NSMutableData data];
     while (!stop && (readcount = read(fd, &byte, 1)) != -1) {
         if (readcount != 1) {
+            if (readcount == 0) {
+                self.errorHandler([NSError errorWithDomain:@"nu.dll.lampster" code:3 userInfo:@{NSLocalizedDescriptionKey:@"EOF from client"}]);
+            }
             NSLog(@"Error: read %zu bytes instead of 1", readcount);
             return;
         }
@@ -185,6 +194,10 @@
             completionHandler(nil, self.lastData[@"lights-status"]);
         }
     }];
+}
+
+-(void) lightSet:(NSString*) lampId toState:(BOOL) state completionHandler:(void (^)(NSError*)) completionHandler {
+    [self send:[NSString stringWithFormat:@"light-set %@ %@", lampId, state ? @"1" : @"0"] andExpect:@"OK" completionHandler:completionHandler];
 }
 
 -(void) lightsOn:(void (^)(NSError*)) completionHandler {
