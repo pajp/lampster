@@ -63,10 +63,6 @@
         }
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self updateLampStatus];
-            /* get a status update again to ensure we have fresh data (refresh is asyncronous) */
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self updateLampStatus];
-            });
         });
     }];
 }
@@ -126,7 +122,7 @@
                     [lampArray addObject:lamp];
                 }];
                  _self.lamps = lampArray;
-                [_self updateLampStatus];
+                [_self updateLampStatus:YES];
                 if (firstRun) {
                     if (!_self.bulbWindow.isVisible) [_self toggleBulkWindow:nil];
                     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"run-once"];
@@ -215,6 +211,10 @@
 }
 
 - (void)updateLampStatus {
+    [self updateLampStatus:NO];
+}
+
+- (void)updateLampStatus:(BOOL) refreshed {
     dispatch_async(dispatch_get_main_queue(), ^{
         self.bulbWindow.title = @"Updating bulb status…";
     });
@@ -235,6 +235,17 @@
                 NSLog(@"Lamp %@ power: %@", lampsObj[@"id"], lampsObj[@"power"]);
             }];
             [self.table reloadData];
+            if (!refreshed) {
+                /* It seems we often (always?) need several refresh request before power state is actually
+                 * update. Schedule 3, one second apart.
+                 */
+                for (int seconds = 1; seconds <= 3; seconds++) {
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(seconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [self updateLampStatus:YES];
+                    });
+                }
+            }
+            
         });
     }];
 }
