@@ -180,16 +180,17 @@
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             self.bulbWindow.title = @"LIFX bulbs";
-        });
-        [self.lamps enumerateObjectsUsingBlock:^(NSMutableDictionary* lampsObj, NSUInteger idx, BOOL *stop) {
-            [lights enumerateObjectsUsingBlock:^(NSDictionary* statusObj, NSUInteger idx, BOOL *stop) {
-                if ([lampsObj[@"id"] isEqualToString:statusObj[@"id"]]) {
-                    [lampsObj addEntriesFromDictionary:statusObj];
-                }
+            [self.lamps enumerateObjectsUsingBlock:^(NSMutableDictionary* lampsObj, NSUInteger idx, BOOL *stop) {
+                [lights enumerateObjectsUsingBlock:^(NSDictionary* statusObj, NSUInteger idx, BOOL *stop) {
+                    if ([lampsObj[@"id"] isEqualToString:statusObj[@"id"]]) {
+                        [lampsObj addEntriesFromDictionary:statusObj];
+                    }
+                }];
+                lampsObj[@"power"] = [lampsObj[@"power"] isEqualToString:@"on"] ? @( 1 ) : @( 0 );
+                NSLog(@"Lamp %@ power: %@", lampsObj[@"id"], lampsObj[@"power"]);
             }];
-            lampsObj[@"power"] = [lampsObj[@"power"] isEqualToString:@"on"] ? @( 1 ) : @( 0 );
-            NSLog(@"Lamp %@ power: %@", lampsObj[@"id"], lampsObj[@"power"]);
-        }];
+            [self.table reloadData];
+        });
     }];
 }
 
