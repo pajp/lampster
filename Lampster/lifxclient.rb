@@ -84,9 +84,9 @@ else
     lightdata = {}
     @client.lights.lights.each { | light|
         lightdata[light.id] = { :id => light.id, :label => light.label }
-        @selected_bulbs.push light.id
-        light.add_tag @SELECTED_TAG
+        light.remove_tag @SELECTED_TAG
     }
+    @client.purge_unused_tags!
     data = {:bulb_count => @client.lights.count, :scan_time => scan_time, :lights => lightdata }
     puts ": #{JSON.generate(data)}"
 end
@@ -113,22 +113,14 @@ ARGF.each do |line|
         toggle_one(lampid, state)
     end
     if line =~ /^lights-on$/
-        if @selected_bulbs.count == @client.lights.count
-            toggle_all(true)
-        else
-            toggle_selected(true)
-        end
+        toggle_all(true)
     end
     if line =~ /^lights-off$/
-        if @selected_bulbs.count == @client.lights.count
-            toggle_all(false)
-        else
-            toggle_selected(false)
-        end
+        toggle_all(false)
     end
     if /^set-color *(?<hue>[0-9.]*) (?<saturation>[0-9.]*) (?<brightness>[0-9.]*)$/ =~ line
         puts "Received Hue #{hue} Saturation #{saturation} Brightness #{brightness}"
-        @client.lights.with_tag(@SELECTED_TAG).set_color(LIFX::Color::hsb(hue.to_f, saturation.to_f, brightness.to_f))
+        @client.lights.set_color(LIFX::Color::hsb(hue.to_f, saturation.to_f, brightness.to_f))
         puts "OK"
     end
     if line =~ /^lights-status$/
