@@ -174,6 +174,16 @@
 -(void) send:(NSString*) command {
     [clientinput.fileHandleForWriting writeData:[[NSString stringWithFormat:@"%@\n", command] dataUsingEncoding:NSUTF8StringEncoding]];
 }
+
+-(void) setColor:(NSColor*) color forBulbID:(NSString*) bulbId completionHandler:(void (^)(NSError*)) completionHandler {
+    CGFloat hue, saturation, brightness, alpha;
+    [color getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha];
+    hue *= 360.0;
+
+    [self setColorHue:hue saturation:saturation brightness:brightness forBulbID:bulbId completionHandler:completionHandler];
+}
+
+
 -(void) setColor:(NSColor*) color completionHandler:(void (^)(NSError*)) completionHandler {
     CGFloat hue, saturation, brightness, alpha;
     [color getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha];
@@ -183,7 +193,13 @@
 }
 
 -(void) setColorHue:(CGFloat)hue saturation:(CGFloat)saturation brightness:(CGFloat)brightness completionHandler:(void (^)(NSError*)) completionHandler {
-    [self send:[NSString stringWithFormat:@"set-color %f %f %f", hue, saturation, brightness] andExpect:@"OK" completionHandler:completionHandler];
+    [self setColorHue:hue saturation:saturation brightness:brightness forBulbID:nil completionHandler:completionHandler];
+}
+
+-(void) setColorHue:(CGFloat)hue saturation:(CGFloat)saturation brightness:(CGFloat)brightness forBulbID:(NSString*)bulbId completionHandler:(void (^)(NSError*)) completionHandler {
+    NSString* bulbParameter = bulbId == nil ? @" " : [NSString stringWithFormat:@" %@ ", bulbId];
+    
+    [self send:[NSString stringWithFormat:@"set-color%@%f %f %f", bulbParameter, hue, saturation, brightness] andExpect:@"OK" completionHandler:completionHandler];
 }
 
 -(void) lightsStatus:(void (^)(NSError*, NSArray*)) completionHandler {

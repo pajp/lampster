@@ -120,9 +120,11 @@ ARGF.each do |line|
     end
     if /^set-color *(?<hue>[0-9.]*) (?<saturation>[0-9.]*) (?<brightness>[0-9.]*)$/ =~ line
         puts "Received Hue #{hue} Saturation #{saturation} Brightness #{brightness}"
-        @client.lights.set_color(LIFX::Color::hsb(hue.to_f, saturation.to_f, brightness.to_f))
+        @client.lights.set_color(LIFX::Color::hsb(hue.to_f, saturation.to_f, brightness.to_f), 0)
         puts "OK"
     end
+
+
     if line =~ /^lights-status$/
         @client.refresh # note: refresh is asynchronous so light status may not
         lights = []     # be immediately visible
@@ -137,6 +139,17 @@ ARGF.each do |line|
         puts ": #{JSON.generate(data)}"
         puts "OK"
     end
+
+    if /^set-color *(?<bulbid>[0-9a-f]+) *(?<hue>[0-9.]*) (?<saturation>[0-9.]*) (?<brightness>[0-9.]*)$/ =~ line
+        @client.lights.each do | light |
+            if light.id == bulbid
+                light.set_color(LIFX::Color::hsb(hue.to_f, saturation.to_f, brightness.to_f), duration: 0)
+              puts "For bulb #{bulbid} Hue #{hue} Saturation #{saturation} Brightness #{brightness}"
+            end
+        end
+        puts "OK"
+    end
+
     if line =~ /^ping$/
         puts "OK"
     end
