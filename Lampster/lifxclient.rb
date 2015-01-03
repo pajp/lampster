@@ -11,11 +11,7 @@ puts "Hello."
 @client = LIFX::Client.lan
 @selected_bulbs = []
 def toggle_all(state)
-    if state
-        @client.lights.turn_on
-    else
-        @client.lights.turn_off
-    end
+    toggle_one(nil, state)
     puts ": #{JSON.generate({:toggle_count => @client.lights.count})}"
     puts "OK"
 end
@@ -23,13 +19,13 @@ end
 def toggle_one(lampid, state)
     @client.lights.lights.each { |light|
         puts "Light #{light.id}"
-        if light.id == lampid
-            if state.to_i == 1
+        if light.id == lampid || lampid == nil
+            if state
                 puts "Turning on #{light.id}"
                 light.turn_on!
             else
                 puts "Turning off #{light.id}"
-                light.turn_off
+                light.turn_off!
             end
         end
     }
@@ -110,7 +106,7 @@ ARGF.each do |line|
         puts "OK"
     end
     if /^light-set *(?<lampid>[0-9a-f]+) *(?<state>[01]{1})$/ =~ line
-        toggle_one(lampid, state)
+        toggle_one(lampid, state == "1")
     end
     if line =~ /^lights-on$/
         toggle_all(true)
