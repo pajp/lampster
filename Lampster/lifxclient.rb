@@ -120,7 +120,19 @@ ARGF.each do |line|
     end
     if /^set-color *(?<hue>[0-9.]*) (?<saturation>[0-9.]*) (?<brightness>[0-9.]*)$/ =~ line
         puts "Received Hue #{hue} Saturation #{saturation} Brightness #{brightness}"
-        @client.lights.set_color(LIFX::Color::hsb(hue.to_f, saturation.to_f, brightness.to_f), 0)
+        @client.lights.set_color(LIFX::Color::hsb(hue.to_f, saturation.to_f, brightness.to_f))
+        puts "OK"
+        next
+    end
+    if /^sine *(?<hue>[0-9.]*) (?<saturation>[0-9.]*) (?<brightness>[0-9.]*)$/ =~ line
+        puts "Sine Hue #{hue} Saturation #{saturation} Brightness #{brightness}"
+        @client.lights.sine(LIFX::Color::hsb(hue.to_f, saturation.to_f, brightness.to_f))
+        puts "OK"
+        next
+    end
+    if /^set-color *(?<hue>[0-9.]*) (?<saturation>[0-9.]*) (?<brightness>[0-9.]*) (?<kelvin>[0-9]*) (?<duration>[0-9]*)$/ =~ line
+        puts "Received Hue #{hue} Saturation #{saturation} Brightness #{brightness} Kelvin #{kelvin} Duration #{duration}"
+        @client.lights.set_color(LIFX::Color::hsbk(hue.to_f, saturation.to_f, brightness.to_f, kelvin), duration: duration.to_f)
         puts "OK"
         next
     end
@@ -142,7 +154,7 @@ ARGF.each do |line|
         next
     end
 
-    if /^set-color *(?<bulbid>[0-9a-f]+) *(?<hue>[0-9.]*) (?<saturation>[0-9.]*) (?<brightness>[0-9.]*)$/ =~ line
+    if /^set-color *(?<bulbid>[0-9a-f*]+) *(?<hue>[0-9.]*) (?<saturation>[0-9.]*) (?<brightness>[0-9.]*)$/ =~ line
         @client.lights.each do | light |
             if bulbid == "*" || light.id == bulbid
               light.set_color(LIFX::Color::hsb(hue.to_f, saturation.to_f, brightness.to_f))
