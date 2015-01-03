@@ -108,20 +108,25 @@ ARGF.each do |line|
             end
         end
         puts "OK"
+        next
     end
     if /^light-set *(?<lampid>[0-9a-f]+) *(?<state>[01]{1})$/ =~ line
         toggle_one(lampid, state)
+        next
     end
     if line =~ /^lights-on$/
         toggle_all(true)
+        next
     end
     if line =~ /^lights-off$/
         toggle_all(false)
+        next
     end
     if /^set-color *(?<hue>[0-9.]*) (?<saturation>[0-9.]*) (?<brightness>[0-9.]*)$/ =~ line
         puts "Received Hue #{hue} Saturation #{saturation} Brightness #{brightness}"
         @client.lights.set_color(LIFX::Color::hsb(hue.to_f, saturation.to_f, brightness.to_f), 0)
         puts "OK"
+        next
     end
 
 
@@ -138,23 +143,28 @@ ARGF.each do |line|
         data = { "lights-status" => lights }
         puts ": #{JSON.generate(data)}"
         puts "OK"
+        next
     end
 
     if /^set-color *(?<bulbid>[0-9a-f]+) *(?<hue>[0-9.]*) (?<saturation>[0-9.]*) (?<brightness>[0-9.]*)$/ =~ line
         @client.lights.each do | light |
-            if light.id == bulbid
-                light.set_color(LIFX::Color::hsb(hue.to_f, saturation.to_f, brightness.to_f), duration: 0)
+            if bulbid == "*" || light.id == bulbid
+              light.set_color(LIFX::Color::hsb(hue.to_f, saturation.to_f, brightness.to_f))
               puts "For bulb #{bulbid} Hue #{hue} Saturation #{saturation} Brightness #{brightness}"
             end
         end
         puts "OK"
+        next
     end
 
     if line =~ /^ping$/
         puts "OK"
+        next
     end
     if line =~ /^exit$/
         puts "OK"
+        puts "EOF"
+        exit
     end
 end
 puts "EOF"
