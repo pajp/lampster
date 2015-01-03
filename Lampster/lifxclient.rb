@@ -13,7 +13,6 @@ puts "Hello."
 def toggle_all(state)
     toggle_one(nil, state)
     puts ": #{JSON.generate({:toggle_count => @client.lights.count})}"
-    puts "OK"
 end
 
 def toggle_one(lampid, state)
@@ -29,7 +28,6 @@ def toggle_one(lampid, state)
             end
         end
     }
-    puts "OK"
 end
 
 def toggle_selected(state)
@@ -108,13 +106,16 @@ ARGF.each do |line|
     end
     if /^light-set *(?<lampid>[0-9a-f]+) *(?<state>[01]{1})$/ =~ line
         toggle_one(lampid, state == "1")
+        puts "OK"
     end
     if line =~ /^lights-on$/
         toggle_all(true)
+        puts "OK"
         next
     end
     if line =~ /^lights-off$/
         toggle_all(false)
+        puts "OK"
         next
     end
     if /^set-color *(?<hue>[0-9.]*) (?<saturation>[0-9.]*) (?<brightness>[0-9.]*)$/ =~ line
