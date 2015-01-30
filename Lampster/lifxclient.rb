@@ -9,6 +9,8 @@ STDOUT.sync = true
 
 puts "Hello."
 @client = LIFX::Client.lan
+LIFX::Config.message_wait_timeout = 5
+
 @selected_bulbs = []
 def toggle_all(state)
     toggle_one(nil, state)
