@@ -6,6 +6,11 @@ STDOUT.sync = true
 
 @SELECTED_TAG = "Selected in Lampster"
 
+bulbcount = 0;
+if ARGV.length > 0
+  bulbcount = ARGV.shift.to_i
+end
+puts "Expecting #{bulbcount} bulbs"
 
 puts "Hello."
 @client = LIFX::Client.lan
@@ -68,10 +73,14 @@ last_bulb_count = 0
     end
     last_bulb_count = c.lights.count
     # stop looking if no new bulb has announced itself during the last
-    # three seconds
-    Time.new.to_i - last_t > 3
+    # five seconds
+    Time.new.to_i - last_t > 5 || (bulbcount > 0 && last_bulb_count == bulbcount)
 }
 scan_time = Time.new.to_i - start_t
+if bulbcount > 0 && last_bulb_count < bulbcount
+    STDERR.puts "Only found #{last_bulb_count} out of #{bulbcount} bulbs after #{scan_time} seconds."
+    exit 1
+end
 if @client.lights.count == 0
     STDERR.puts "No lights found, giving up after #{scan_time} seconds."
     exit 1
