@@ -110,7 +110,6 @@
                     _self.firstBulbDiscovered = YES;
                     [_self enableControls];
                     [_self fadeIn];
-                    [_self xmas];
                 }
                 _self.levelIndicator.maxValue = [(NSNumber*) data[@"bulb_count"] intValue];
                 [_self.levelIndicator setDoubleValue:_self.levelIndicator.maxValue];
