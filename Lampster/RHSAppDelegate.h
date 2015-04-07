@@ -24,4 +24,5 @@
 @property (weak) IBOutlet NSLevelIndicator *levelIndicator;
 @property (weak) IBOutlet NSTableView *table;
 @property (unsafe_unretained) IBOutlet NSPanel *bulbWindow;
+@property int xmasGreenIndex;
 @end

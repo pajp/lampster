@@ -110,6 +110,7 @@
                     _self.firstBulbDiscovered = YES;
                     [_self enableControls];
                     [_self fadeIn];
+                    [_self xmas];
                 }
                 _self.levelIndicator.maxValue = [(NSNumber*) data[@"bulb_count"] intValue];
                 [_self.levelIndicator setDoubleValue:_self.levelIndicator.maxValue];
@@ -160,6 +161,25 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self.lifxClient waitForReady:restartingCompletionHandler];
     });
+}
+
+- (void)xmas {
+    __block int __idx = 0;
+    int xmasGreenIndex = self.xmasGreenIndex;
+    [self.lamps enumerateObjectsUsingBlock:^(NSMutableDictionary* lamp, NSUInteger idx, BOOL *stop) {
+        NSColor* c = __idx == xmasGreenIndex ? [NSColor greenColor] : [NSColor redColor];
+        [self.lifxClient setColor:c
+                        forBulbID:lamp[@"id"]
+                completionHandler:^(NSError *error) {
+
+        }];
+        __idx++;
+    }];
+    self.xmasGreenIndex++;
+    if (self.xmasGreenIndex > self.lamps.count) {
+        self.xmasGreenIndex = 0;
+    }
+    [self performSelector:@selector(xmas) withObject:nil afterDelay:1.0];
 }
 
 - (void)fadeInWindow:(NSWindow*) window {
