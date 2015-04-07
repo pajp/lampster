@@ -150,6 +150,8 @@
 
     [self.bulbWindow setOpaque:NO];
     [self.bulbWindow setAlphaValue:0.9];
+    NSAppearance* hudAppareance = [NSAppearance appearanceNamed:NSAppearanceNameVibrantLight];
+    self.bulbWindow.appearance = hudAppareance;
 
     /* For some reason drop shadow disappears when I try to fade in the main
        window, so I'll leave it out for now */
