@@ -10,13 +10,13 @@
 
 @interface RHSLIFXClient : NSObject
 {
-    NSTask* rubyclient;
     NSPipe* clientinput;
     NSString* lastCommand;
     NSString* lastExpect;
     void (^lastCompletionHandler)(NSError*);
     dispatch_queue_t lifxqueue;
 }
+@property NSTask* rubyclient;
 @property (retain) NSDictionary* lastData;
 @property (nonatomic, copy) void (^errorHandler)(NSError*);
 @property (nonatomic, copy) void (^dataHandler)(NSDictionary*);

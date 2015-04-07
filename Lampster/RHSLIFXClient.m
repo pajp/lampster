@@ -19,7 +19,7 @@
 //    if (reader) {
 //        [reader setFileHandle:[NSFileHandle fileHandleWithNullDevice]];
 //    }
-    rubyclient = [[NSTask alloc] init];
+    NSTask* rubyclient = [[NSTask alloc] init];
     NSString* launchPath = [[NSBundle bundleForClass:self.class] pathForResource:@"lifxclient" ofType:@"rb"];
     NSLog(@"Ruby client launch path: %@", launchPath);
     rubyclient.launchPath = launchPath;
@@ -30,7 +30,7 @@
     rubyclient.standardOutput = stdout;
     rubyclient.standardError = stderr;
     [rubyclient launch];
-    
+    self.rubyclient = rubyclient;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self readStandardError:stderr];
     });
@@ -108,7 +108,7 @@
 }
 
 - (void) readClientLinesUsingBlock:(void(^)(NSString*, BOOL*))block {
-    int fd = ((NSPipe*) rubyclient.standardOutput).fileHandleForReading.fileDescriptor;
+    int fd = ((NSPipe*) self.rubyclient.standardOutput).fileHandleForReading.fileDescriptor;
     uint8_t byte;
     size_t readcount = 0;
     BOOL stop = NO;
