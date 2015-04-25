@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6751" systemVersion="14D130a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7702" systemVersion="14E7f" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6751"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7702"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -16,6 +16,7 @@
             <connections>
                 <outlet property="bulbWindow" destination="TwU-7Q-sOA" id="JEy-aV-Lmm"/>
                 <outlet property="colorWell" destination="SI3-4d-MYC" id="uFa-e8-UiC"/>
+                <outlet property="hudSpinner" destination="vGK-A6-djE" id="0BE-tU-RAa"/>
                 <outlet property="levelIndicator" destination="aIh-rr-EM0" id="o6Z-ct-8oS"/>
                 <outlet property="offButton" destination="2Di-OE-yFO" id="hQN-wt-2Kt"/>
                 <outlet property="onButton" destination="MeR-CO-tw5" id="h7i-Ar-kpa"/>
@@ -152,7 +153,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KBq-1q-IZu">
-                        <rect key="frame" x="0.0" y="0.0" width="319" height="140"/>
+                        <rect key="frame" x="0.0" y="16" width="319" height="124"/>
                         <clipView key="contentView" id="2ch-L7-wAo">
                             <rect key="frame" x="1" y="17" width="236" height="122"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -161,7 +162,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="317" height="19"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
                                         <tableColumn identifier="power" width="40" minWidth="40" maxWidth="1000" id="Dls-Xq-Aa1">
@@ -218,12 +219,18 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </tableHeaderView>
                     </scrollView>
+                    <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="vGK-A6-djE">
+                        <rect key="frame" x="303" y="0.0" width="16" height="16"/>
+                    </progressIndicator>
                 </subviews>
                 <constraints>
                     <constraint firstItem="KBq-1q-IZu" firstAttribute="top" secondItem="YO8-gE-N4L" secondAttribute="top" id="0TC-YS-Eep"/>
                     <constraint firstItem="KBq-1q-IZu" firstAttribute="leading" secondItem="YO8-gE-N4L" secondAttribute="leading" id="C8p-tX-jjt"/>
-                    <constraint firstAttribute="bottom" secondItem="KBq-1q-IZu" secondAttribute="bottom" id="MZs-yo-oHW"/>
+                    <constraint firstAttribute="bottom" secondItem="vGK-A6-djE" secondAttribute="bottom" id="Ljx-fC-MYK"/>
+                    <constraint firstAttribute="bottom" secondItem="KBq-1q-IZu" secondAttribute="bottom" constant="16" id="MZs-yo-oHW"/>
                     <constraint firstAttribute="trailing" secondItem="KBq-1q-IZu" secondAttribute="trailing" id="gRP-K8-llt"/>
+                    <constraint firstItem="vGK-A6-djE" firstAttribute="top" secondItem="KBq-1q-IZu" secondAttribute="bottom" id="gfT-8q-FRd"/>
+                    <constraint firstAttribute="trailing" secondItem="vGK-A6-djE" secondAttribute="trailing" id="ugg-wR-zOG"/>
                 </constraints>
             </view>
             <point key="canvasLocation" x="358.5" y="537"/>

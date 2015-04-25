@@ -101,6 +101,17 @@
     self.table.delegate = self;
     self.lifxClient = [RHSLIFXClient new];
     __weak RHSAppDelegate* _self = self;
+    self.lifxClient.waitStateChangeHandler = ^void(BOOL inWaitState) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (inWaitState) {
+                [_self.hudSpinner setHidden:NO];
+                [_self.hudSpinner startAnimation:nil];
+            } else {
+                [_self.hudSpinner setHidden:YES];
+                [_self.hudSpinner stopAnimation:nil];
+            }
+        });
+    };
     self.lifxClient.dataHandler = ^void(NSDictionary* data) {
         NSLog(@"Received data object: %@", data);
         dispatch_async(dispatch_get_main_queue(), ^{

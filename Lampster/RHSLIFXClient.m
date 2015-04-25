@@ -134,6 +134,7 @@
 }
 
 -(BOOL) waitFor:(NSString*) escape {
+    if (self.waitStateChangeHandler) self.waitStateChangeHandler(true);
     __block BOOL found = NO;
     [self readClientLinesUsingBlock:^(NSString *str, BOOL *stop) {
         NSString* line = [str stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
@@ -148,6 +149,7 @@
             NSLog(@"… %@", line);
         }
     }];
+    if (self.waitStateChangeHandler) self.waitStateChangeHandler(false);
     return found;
 }
 
