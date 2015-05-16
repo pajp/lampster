@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "RHSLIFXClient.h"
+#import "RHSNetMonitor.h"
 
 @interface RHSAppDelegate : NSObject <NSApplicationDelegate, NSTableViewDataSource, NSTableViewDelegate>
 
@@ -26,4 +27,5 @@
 @property (unsafe_unretained) IBOutlet NSPanel *bulbWindow;
 @property int xmasGreenIndex;
 @property (weak) IBOutlet NSProgressIndicator *hudSpinner;
+@property RHSNetMonitor* netMonitor;
 @end

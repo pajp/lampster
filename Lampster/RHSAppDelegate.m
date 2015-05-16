@@ -10,6 +10,8 @@
 #import "RHSAppDelegate.h"
 #import "DDHotKeyCenter.h"
 
+@import SystemConfiguration;
+
 @implementation RHSAppDelegate
 
 - (BOOL)tableView:(NSTableView *)aTableView shouldEditTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex {
@@ -87,18 +89,69 @@
     return dockMenu;
 }
 
+- (void)setupNetworkMonitoring
+{
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults registerDefaults:@{ @"home-network": @"" }];
+
+    self.netMonitor = [[RHSNetMonitor alloc] initWithHandler:^(NSArray *interfaces) {
+        if (interfaces.count) {
+            NSString* homeNetwork = [defaults stringForKey:@"home-network"];
+            if ([homeNetwork isEqualToString:@""]) {
+                NSString* sig = interfaces[0][@"NetworkSignature"];
+                [defaults setObject:sig forKey:@"home-network"];
+                homeNetwork = sig;
+                NSLog(@"*** Registering %@ as our home network", homeNetwork);
+            }
+            BOOL homeFound = NO;
+            for (NSDictionary* intf in interfaces) {
+                if ([intf[@"NetworkSignature"] isEqualToString:homeNetwork]) {
+                    homeFound = YES;
+                }
+            }
+            if (homeFound) {
+                NSLog(@"**** Home network available, refreshing lights status");
+                [self refreshAction:nil];
+            } else {
+                NSLog(@"*** Network available, but unknown network.");
+            }
+        } else {
+            NSLog(@"**** Network offline");
+        }
+    }];
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    [self setupNetworkMonitoring];
+
     DDHotKeyCenter* hkc = [DDHotKeyCenter sharedHotKeyCenter];
     [hkc registerHotKey:[DDHotKey hotKeyWithKeyCode:37 modifierFlags:NSShiftKeyMask|NSCommandKeyMask task:^(NSEvent *event) {
         NSLog(@"Got hot key event! %@", event);
         [NSApp activateIgnoringOtherApps:YES];
         [self.bulbWindow setIsVisible:YES];
     }]];
-    BOOL firstRun = ![[NSUserDefaults standardUserDefaults] boolForKey:@"run-once"];
     self.firstBulbDiscovered = NO;
     self.table.dataSource = self;
     self.table.delegate = self;
+
+    [self.bulbWindow setOpaque:NO];
+    [self.bulbWindow setAlphaValue:0.9];
+    NSAppearance* hudAppareance = [NSAppearance appearanceNamed:NSAppearanceNameVibrantLight];
+    self.bulbWindow.appearance = hudAppareance;
+
+    [self setupLifxClient];
+
+    /* For some reason drop shadow disappears when I try to fade in the main
+       window, so I'll leave it out for now */
+//    [self.window setOpaque:NO];
+//    [self.window setAlphaValue:0.0];
+//    [self fadeInWindow:self.window];
+//    [self.window setIsVisible:YES];
+}
+
+- (void)setupLifxClient {
+    BOOL firstRun = ![[NSUserDefaults standardUserDefaults] boolForKey:@"run-once"];
     self.lifxClient = [RHSLIFXClient new];
     __weak RHSAppDelegate* _self = self;
     self.lifxClient.waitStateChangeHandler = ^void(BOOL inWaitState) {
@@ -158,21 +211,11 @@
         }
         
     };
-
-    [self.bulbWindow setOpaque:NO];
-    [self.bulbWindow setAlphaValue:0.9];
-    NSAppearance* hudAppareance = [NSAppearance appearanceNamed:NSAppearanceNameVibrantLight];
-    self.bulbWindow.appearance = hudAppareance;
-
-    /* For some reason drop shadow disappears when I try to fade in the main
-       window, so I'll leave it out for now */
-//    [self.window setOpaque:NO];
-//    [self.window setAlphaValue:0.0];
-//    [self fadeInWindow:self.window];
-//    [self.window setIsVisible:YES];
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self.lifxClient waitForReady:restartingCompletionHandler];
     });
+    
 }
 
 - (void)xmas {
@@ -280,6 +323,9 @@
             
         });
     }];
+}
+- (IBAction)refreshAction:(id)sender {
+    [self setupLifxClient];
 }
 
 - (IBAction)lightsOn:(id)sender {

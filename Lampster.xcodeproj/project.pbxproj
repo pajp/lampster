@@ -33,6 +33,8 @@
 		3A02CC0619855736006F405C /* RHSLIFXClientTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A02CBE719843DEE006F405C /* RHSLIFXClientTest.m */; };
 		3A02CC0719855750006F405C /* lifxclient.rb in Resources */ = {isa = PBXBuildFile; fileRef = 3A02CBCE1975C35E006F405C /* lifxclient.rb */; };
 		3A02CC0819855900006F405C /* RHSLIFXClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A02CBCC1975BFCB006F405C /* RHSLIFXClient.m */; };
+		3A492D701B07C96A006CCB79 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A492D6F1B07C96A006CCB79 /* SystemConfiguration.framework */; };
+		3A492D731B07EFC1006CCB79 /* RHSNetMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A492D721B07EFC1006CCB79 /* RHSNetMonitor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +88,9 @@
 		3A02CBFD198556FF006F405C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3A02CC01198556FF006F405C /* LIFXClient Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LIFXClient Tests-Prefix.pch"; sourceTree = "<group>"; };
 		3A02CC091985594D006F405C /* install-gem-to-target.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "install-gem-to-target.sh"; sourceTree = "<group>"; };
+		3A492D6F1B07C96A006CCB79 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		3A492D711B07EFC1006CCB79 /* RHSNetMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RHSNetMonitor.h; sourceTree = "<group>"; };
+		3A492D721B07EFC1006CCB79 /* RHSNetMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RHSNetMonitor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A492D701B07C96A006CCB79 /* SystemConfiguration.framework in Frameworks */,
 				3A02CBE419782CCD006F405C /* QuartzCore.framework in Frameworks */,
 				3A02CBE11976F997006F405C /* Carbon.framework in Frameworks */,
 				3A02CB981975BF25006F405C /* Cocoa.framework in Frameworks */,
@@ -145,6 +151,7 @@
 		3A02CB961975BF25006F405C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3A492D6F1B07C96A006CCB79 /* SystemConfiguration.framework */,
 				3A02CBE319782CCD006F405C /* QuartzCore.framework */,
 				3A02CBE01976F997006F405C /* Carbon.framework */,
 				3A02CB971975BF25006F405C /* Cocoa.framework */,
@@ -170,6 +177,8 @@
 				3A02CBE21977002E006F405C /* Lampster.entitlements */,
 				3A02CBA91975BF25006F405C /* RHSAppDelegate.h */,
 				3A02CBAA1975BF25006F405C /* RHSAppDelegate.m */,
+				3A492D711B07EFC1006CCB79 /* RHSNetMonitor.h */,
+				3A492D721B07EFC1006CCB79 /* RHSNetMonitor.m */,
 				3A02CBAC1975BF25006F405C /* MainMenu.xib */,
 				3A02CBCB1975BFCB006F405C /* RHSLIFXClient.h */,
 				3A02CBCC1975BFCB006F405C /* RHSLIFXClient.m */,
@@ -427,6 +436,7 @@
 				3A02CBAB1975BF25006F405C /* RHSAppDelegate.m in Sources */,
 				3A02CBDD1976F988006F405C /* DDHotKeyCenter.m in Sources */,
 				3A02CBDF1976F988006F405C /* DDHotKeyUtilities.m in Sources */,
+				3A492D731B07EFC1006CCB79 /* RHSNetMonitor.m in Sources */,
 				3A02CBA41975BF25006F405C /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
