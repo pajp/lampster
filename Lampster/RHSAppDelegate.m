@@ -185,7 +185,11 @@
                     NSMutableDictionary* lamp = [NSMutableDictionary dictionaryWithDictionary:lamps[obj]];
                     [lampArray addObject:lamp];
                 }];
-                 _self.lamps = lampArray;
+
+                _self.lamps = [lampArray sortedArrayUsingComparator:^NSComparisonResult(NSDictionary* obj1, NSDictionary* obj2) {
+                    return [obj1[@"label"] compare:obj2[@"label"] options:NSCaseInsensitiveSearch];
+                }];
+
                 [_self updateLampStatus:YES];
                 if (firstRun) {
                     if (!_self.bulbWindow.isVisible) [_self toggleBulkWindow:nil];
